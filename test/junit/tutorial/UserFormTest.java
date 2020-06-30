@@ -12,5 +12,13 @@ public class UserFormTest {
 		UserForm sut = new UserForm("user", "pass");
 		assertThat(sut.isValid(), is(true));
 	}
+	
+	@Test
+	public void userNameが空の時にエラーメッセージを取得できる() throws Exception {
+		UserForm sut = new UserForm("", "pass");
+		String expected = "ユーザIDは必須です";
+		String actual = sut.getErrorMessage();
+		assertThat(actual, is(expected));
+	}
 
 }
