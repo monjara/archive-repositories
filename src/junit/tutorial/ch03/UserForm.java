@@ -1,4 +1,4 @@
-package junit.tutorial;
+package junit.tutorial.ch03;
 
 public class UserForm {
 	private  String userName;

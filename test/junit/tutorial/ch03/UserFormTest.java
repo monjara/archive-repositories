@@ -1,9 +1,11 @@
-package junit.tutorial;
+package junit.tutorial.ch03;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import junit.tutorial.ch03.UserForm;
 
 public class UserFormTest {
 
