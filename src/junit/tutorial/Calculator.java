@@ -6,6 +6,7 @@ public class Calculator {
 	}
 	
 	public float divide(int x, int y) {
+		if (y == 0) throw new IllegalArgumentException("devided by 0");
 		return (float) x / (float) y;
 	}
 }
