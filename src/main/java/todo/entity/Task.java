@@ -23,12 +23,12 @@ public class Task {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     // この変数のカラム名がFolder folderとかぶっているがどうなるかわからないため
     // とりあえず残しておく
     @Column(name = "folder_id")
-    private int folderId;
+    private Long folderId;
 
     @Column(name = "title")
     private String title;
