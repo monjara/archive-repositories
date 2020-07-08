@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Http\Requests\CreateTask;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class TaskTest extends TestCase
@@ -12,12 +12,16 @@ class TaskTest extends TestCase
 
     use RefreshDatabase;
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
 
         $this->seed('FoldersTableSeeder');
     }
 
+    /**
+     * 期限日が日付ではない場合はバリデーションエラー
+     * @test
+     */
     public function due_date_should_be_date() {
         $response = $this->post('/folders/1/tasks/create', [
             'title' => 'Sample task',
@@ -29,6 +33,10 @@ class TaskTest extends TestCase
         ]);
     }
 
+    /**
+     * 期限日が過去日付の場合はバリデーションエラー
+     * @test
+     */
     public function due_date_should_not_be_past()
     {
         $response = $this->post('/folders/1/tasks/create', [
