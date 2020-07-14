@@ -57,9 +57,8 @@ class TaskController extends Controller
 
         $folder->tasks()->save($task);
 
-        return redirect()->route('tasks.index', [
-            'id' => $folder->id,
-        ]);
+
+        return redirect()->route('tasks.index', [$folder->id]); 
     }
 
  /**
@@ -72,9 +71,11 @@ class TaskController extends Controller
     {
         $this->checkRelation($folder, $task);
 
+        
         return view('tasks/edit', [
             'task' => $task,
         ]);
+    
     }
 
     /**
@@ -93,9 +94,7 @@ class TaskController extends Controller
         $task->due_date = $request->due_date;
         $task->save();
 
-        return redirect()->route('tasks.index', [
-            'id' => $task->folder_id,
-        ]);
+        return redirect()->route('tasks.index', [$folder->id]); 
     }
 
     /**
