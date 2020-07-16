@@ -6,7 +6,7 @@ class ActionProvider {
 
     handleJavascriptList = () => {
       const message = this.createChatBotMessage(
-        "Fantastic, I've got the following resources for you on Javascript:",
+        "了解しました。Javascriptの勉強サイトはこちらです：",
         {
           widget: "javascriptLinks",
         }
@@ -16,8 +16,13 @@ class ActionProvider {
     };
 
     greet() {
-      const greetingMessage = this.createChatBotMessage("Hi, friend.");
+      const greetingMessage = this.createChatBotMessage("おっす");
       this.updateChatbotState(greetingMessage);
+    }
+
+    default() {
+      const defaultMessage = this.createChatBotMessage("ちょっと意味がわかんないです");
+      this.updateChatbotState(defaultMessage);
     }
 
     updateChatbotState(message) {
