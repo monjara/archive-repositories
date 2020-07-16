@@ -11,7 +11,7 @@ class ActionProvider {
 
     updateChatbotState(message) {
       this.setState(prevState => ({
-        messages: [prevState.messages, message]
+        ...prevState, messages: [...prevState.messages, message]
       }))
     }
   }
