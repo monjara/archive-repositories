@@ -1,0 +1,42 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listing Players - baseball</title>
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Listing Players</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>年齢</th>
+            <th>チーム名</th>
+            <th>守備位置</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="player:${players}" th:object="${player}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{name}"></td>
+            <td th:text="*{age}"></td>
+            <td th:text="*{team}"></td>
+            <td th:text="*{position}"></td>
+            <td><a class="btn btn-default btn-xs" th:href="@{/players/{id}(id=*{id})}"></a>参照</td>
+            <td><a class="btn btn-default btn-xs" th:href="@{/players/{id}edit(id=*{id})}">編集</a></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
