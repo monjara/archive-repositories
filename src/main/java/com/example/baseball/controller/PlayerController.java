@@ -23,6 +23,11 @@ public class PlayerController {
         return "players/index";
     }
 
+    @GetMapping("new")
+    public String newPlayer(Model model) {
+        return "players/new";
+    }
+
     @GetMapping("{id}/edit")
     public String edit(@PathVariable Long id, Model model) {
         Player player = playerService.findOne(id);

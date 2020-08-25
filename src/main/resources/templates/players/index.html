@@ -30,12 +30,17 @@
             <td th:text="*{age}"></td>
             <td th:text="*{team}"></td>
             <td th:text="*{position}"></td>
-            <td><a class="btn btn-default btn-xs" th:href="@{/players/{id}(id=*{id})}"></a>参照</td>
-            <td><a class="btn btn-default btn-xs" th:href="@{/players/{id}edit(id=*{id})}">編集</a></td>
-            <td></td>
+            <td><a class="btn btn-default btn-xs" th:href="@{/players/{id}(id=*{id})}">参照</a></td>
+            <td><a class="btn btn-default btn-xs" th:href="@{/players/{id}/edit(id=*{id})}">編集</a></td>
+            <td>
+                <form th:action="@{/players/{id}(id=*{id})}" th:method="delete">
+                    <input type="submit" class="btn btn-default btn-xs" value="削除"/>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>
+    <a href="/players/new" class="btn btn-default">新規作成</a>
 </div>
 
 </body>
