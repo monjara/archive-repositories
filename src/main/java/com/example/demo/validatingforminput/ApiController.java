@@ -21,8 +21,7 @@ public class ApiController {
     public ResponseEntity<Map<String, String>> checkPersonInfo(@Validated @RequestBody PersonForm personForm, BindingResult bindingResult) {
 
         Map<String, String> message = new HashMap<>();
-
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasFieldErrors()) {
             message.put("validation", "error");
             return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         } else {
