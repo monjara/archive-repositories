@@ -1,14 +1,10 @@
 package com.example.demo.validatingforminput;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 public class PersonForm {
 
-    @NotNull
     private String name;
 
-    @NotBlank
     private String age;
 
     public String getAge() {

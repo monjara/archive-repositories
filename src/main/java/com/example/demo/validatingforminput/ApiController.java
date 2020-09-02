@@ -1,11 +1,7 @@
 package com.example.demo.validatingforminput;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ApiController {
@@ -13,15 +9,11 @@ public class ApiController {
     @Autowired
     AddToStrings ats;
 
-    @PostMapping("/")
-    public String checkPersonInfo(@Valid PersonForm personForm, BindingResult bindingResult) {
+    @RequestMapping(method = RequestMethod.POST, value = "/")
+    public PersonForm checkPersonInfo(@RequestBody PersonForm personForm) {
 
-        if (bindingResult.hasErrors()) {
-            ats.addAAAAToString(personForm, personForm.getName());
-            return "error" + personForm.getName();
-        } else {
-            ats.addAAAAToString(personForm, personForm.getName());
-            return "success" + personForm.getName();
-        }
+        ats.addAAAAToString(personForm, personForm.getName());
+        return personForm;
+
     }
 }
