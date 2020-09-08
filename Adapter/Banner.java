@@ -1,6 +1,6 @@
 public class Banner {
     private String string;
-    private Banner(String string) {
+    public Banner(String string) {
         this.string = string;
     }
     public void showWithParen() {
