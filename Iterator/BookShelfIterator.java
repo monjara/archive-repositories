@@ -1,5 +1,5 @@
 public class BookShelfIterator implements Iterator {
-    private BookShelf;
+    private BookShelf bookShelf;
     private int index;
     public BookShelfIterator(BookShelf bookShelf) {
         this.bookShelf = bookShelf;
