@@ -1,0 +1,12 @@
+- name: timedatactl set timezone
+  timezone:
+    name: Asia/Tokyo
+
+- name: Disable SELinux
+  selinux:
+    state: disabled
+
+- name: install git
+  yum:
+    name: git
+    state: latest
