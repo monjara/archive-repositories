@@ -1,0 +1,73 @@
+- name: check mysql log file exists
+  stat:
+    path: /var/log/mysqld.log
+    register: log_file
+    changed_when: false
+
+- name: install mysql5.7
+  yum:
+    name: 'http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm'
+    state: present
+
+- name: install mysql-server
+  yum:
+    name: mysql-community-server
+    state: present
+
+- name: install MySQL-python
+  yum:
+    name: MySQL-python
+    state: present
+
+- name: deploy .my.cnf
+  template:
+    src: files/my.cnf
+    owner: root
+    group: root
+
+- name: mysql start / enable
+  service:
+    state: started
+    enabled: yes
+
+- name: get tmporary password
+  shell: cat /var/log/mysqld.log | grep "temporary password" | awk '{print $11}'
+  register: mysql_default_password
+  when: log_file.stat.exists == false
+
+- name: change root user password for updating expiration date
+  shell: mysql -u root -p'{{ mysql_default_password.stdout }}' --connection-expired-password -e "set password for root@'localhost' =password('Tmp_passw0rd');"
+  when: log_file.stat.exists == false
+
+- name: uninstall validate_password
+  shell: mysql -u root -p'tmp_passw0rd' --connect-expired-password -e "uninstall plugin validate_password;"
+  when: log_file.stat.exists == false
+
+- name: create db
+  shell: mysql -u root -p'tmp_passw0rd' --connect-expired-password -e "create database 'appdb';"
+  when: log_file.stat.exists == false
+
+- name: change root user password
+  shell: mysql -u root -p'Tmp_Passw0rd' --connect-expired-password -e "alter user 'root'@'localhost' identified by 'Appl1cation.pass';"
+  when: log_file.stat.exists == false
+
+- name: create mysql user
+  mysql_user:
+    name: appuser
+    host: localhost
+    password: Appl1cation.pass
+    priv: 'appdb.*:ALL,GRANT'
+    state: present
+
+- name: create root@'%' user
+  mysql_user:
+    name: root
+    host: '%'
+    password: Appl1cation.pass
+    priv: '*.*:ALL,GRANT'
+    state: present
+
+- name: delete /root/.my.cnf
+  file:
+    path: /root/.my.cnf
+    state: absent
