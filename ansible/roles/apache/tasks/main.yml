@@ -1,0 +1,61 @@
+- name: install apache
+  yum: 
+    name: httpd
+    state: present
+
+- name: install mod_ssl
+  yum: 
+    name: mod_ssl
+    state: present
+
+- name: status welcom.conf
+  stat:
+    path: /etc/httpd/conf.d/welcome.conf
+  register: welocome_conf
+
+- name: rename welcome.conf to welcome.conf_org
+  shell: mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.conf_org
+  when: welcome_conf.stat.exists
+
+- name: edit /etc/httpd/conf/httpd.conf
+  replace:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: "{{ item.regexp }}"
+    replace: "{{ item.replace }}"
+  with_items:
+    - { regexp: '^User apache', replace: 'User vagrant' }
+    - { regexp: '^Groupe apache', replace: 'Groupe vagrant' }
+    - { regexp: '^ServerName www.example.com:80', replace: 'ServerName 192.168.33.10:80' }
+    - { regexp: '^Options Indexes FollowSymLinks', replace: 'Options FollowSymLinks' }
+    - { regexp: '^LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio', replace: 'LogFormat "%h %l %u %t \"%!414r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio' }
+    - { regexp: '^CustomLog "logs/access_log" combined', replace: '#CustomLog "logs/access_log" combined' }
+    - { regexp: '^AddDefaultCharset UTF-8', replace: 'AddDefaultCharset Off' }
+
+- name: edit /etc/httpd/conf/httpd.conf
+  blockinfile:
+    path: /etc/httpd/conf/httpd.conf
+    insertafter: '^#CustomLog "logs/access_log" common'
+    block: "{{ item }}"
+  with_file:
+    - files/logs_into_httpdconf.txt
+
+- name: edit /etc/httpd/conf/httpd.conf
+  blockinfile:
+    path: /etc/httpd/conf/httpd.conf
+    insertafter: EOF
+    block: "{{ item }}"
+  with_file:
+    - files/insert_after_eof_httpdconf.txt
+
+      #- name: make a symbolic link
+      #  file:
+      #    src: "vagrant/application"
+      #    dest: "/var/www/html/application"
+      #    state: link
+      #    force: yes
+
+- name: apache start / enable
+  service:
+    name: httpd
+    state: started
+    enable: yes

@@ -1,0 +1,25 @@
+AddType application/x-httpd-php .php .html
+ SetEnvIf Request_URI "\.(gif)|(jpg)|(png)|(xbm)|(js)|(css)$" nolog
+ NameVirtualHost 333.333.333.210
+ 
+ <VirtualHost 333.333.333.210>
+   ServerAdmin root@localhost
+   DocumentRoot /var/www/html
+   ServerName 192.168.33.10
+   ErrorLog logs/www_error_log
+   CustomLog logs/www_access_log combined env=!nolog
+ </VirtualHost>
+ 
+ <VirtualHost 333.333.333.210>
+ ScriptAlias /cgi-bin/ /home/vagrant/cgi-bin/
+ ServerAdmin root@localhost
+ DocumentRoot /home/vagrant/application
+ ServerName 192.168.33.10
+ ServerAlias www.192.168.33.10
+ ErrorLog logs/app_error_log
+ CustomLog logs/app_access_log combined env=!nolog
+ 
+ </VirtualHost>
+ <Directory "/var/www/html/Application">
+      AllowOverride All
+  </Directory>
