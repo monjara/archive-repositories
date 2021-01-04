@@ -1,7 +1,7 @@
 # ansible-lamp
 ## 概要
 * vagrantを起動するだけでLAMP環境を構築する。 
-* ansible-lamp/appを共有フォルダとする。 
+* ansible-lamp/共有フォルダとし配下にappを作成していく 
 * centos7 php7.2 mysql5.7
 * 192.168.33.10にてphpinfoを表示する。
 ## 利用方法
