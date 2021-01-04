@@ -1,3 +1,10 @@
+- name: deploy index.php
+  template:
+    src: files/index.php
+    dest: /var/www/html/index.php
+    owner: root
+    group: root
+
 - name: apache restart
   service: 
     name: httpd 
