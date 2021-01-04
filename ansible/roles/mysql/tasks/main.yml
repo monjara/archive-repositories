@@ -38,15 +38,15 @@
   when: log_file.stat.exists == false
 
 - name: change root user password for updating expiration date
-  shell: mysql -u root -p'{{ mysql_default_password.stdout }}' --connection-expired-password -e "set password for root@'localhost' =password('Tmp_passw0rd');"
+  shell: mysql -u root -p'{{ mysql_default_password.stdout }}' --connect-expired-password -e "set password for root@'localhost'=password('Tmp_Passw0rd');"
   when: log_file.stat.exists == false
 
 - name: uninstall validate_password
-  shell: mysql -u root -p'tmp_passw0rd' --connect-expired-password -e "uninstall plugin validate_password;"
+  shell: mysql -u root -p'Tmp_Passw0rd' --connect-expired-password -e "uninstall plugin validate_password;"
   when: log_file.stat.exists == false
 
 - name: create db
-  shell: mysql -u root -p'tmp_passw0rd' --connect-expired-password -e "create database 'appdb';"
+  shell: mysql -u root -p'Tmp_Passw0rd' --connect-expired-password -e "create database 'appdb';"
   when: log_file.stat.exists == false
 
 - name: change root user password
