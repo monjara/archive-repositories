@@ -5,11 +5,11 @@
 
 - name: install remi-release-7.rpm
   yum:
-    name: 'http://rpm.famillecollet.com/enterprise/remi-release-7.rpm'
+    name: 'http://rpms.famillecollet.com/enterprise/remi-release-7.rpm'
 
 - name: install php/library
   yum:
-    name: ['php', 'php-mysql', 'php-common',  'php-mbstring',  'php-json',  'php-xml',  'php-zip',  'php-curl',  'php-intl',  'php-apcu', 'php-opcache', 'php-xdebug']
+    name: ['php', 'php-mysql', 'php-common', 'php-mbstring', 'php-json', 'php-xml', 'php-zip', 'php-curl','php-intl', 'php-apcu', 'php-opcache', 'php-xdebug']
     state: present
     enablerepo: remi,remi-php72
 
@@ -18,9 +18,9 @@
     path: /etc/php.ini
     regexp: "{{ item.regexp }}"
     replace: "{{ item.replace }}"
-  with_item:
+  with_items:
     - { regexp: '^;mbstring.language.*', replace: 'mbstring.language = Japanese' }
-    - { regexp: '^;auto_detect_line_ending.*', replace: 'auto_detect_line_endings = on' }
+    - { regexp: '^;auto_detect_line_endings.*', replace: 'auto_detect_line_endings = on' }
     - { regexp: '^;output_handler.*', replace: 'output_handler = mb_output_handler' }
     - { regexp: '^;mbstring.internal_encoding.*', replace: 'mbstring.internal_encoding = UTF-8' }
     - { regexp: '^;mbstring.encoding_translation.*', replace: 'mbstring.encoding_translation = on' }
@@ -35,40 +35,36 @@
     backup: yes
     regexp: "{{ item.regexp }}"
     replace: "{{ item.replace }}"
-  with_item:
+  with_items:
     - { regexp: '^;opcache.enable_cli=0$', replace: 'opcache.enable_cli=1' }
     - { regexp: '^;opcache.revalidate_freq=2', replace: 'opcache.revalidate_freq=60' }
     - { regexp: '^;opcache.fast_shutdown=0', replace: 'opcache.fast_shutdown=1' }
 
 - name: check composer
-  stat:
-    path: /usr/local/bin/composer.phar
+  stat: 
+    path: /usr/local/bin/composer
   register: composer
   changed_when: false
 
-- name: downloads composer
-  command: 
-    cmd: php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    chdir: /usr/local/bin
-   when: composer.stat.exists == false
-
-- name: dowloads composer
-  command:
-    cmd: php -r "if (hash_file('sha384', 'composer-setup.php') === '795f976fe0ebd8b75f26a6dd68f78fd3453ce79f32ecb33e7fd087d39bfeb978342fb73ac986cd4f54edd0dc902601dc') { echo 'Instal    ler verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-    chdir: /usr/local/bin
+- name: download composer installer (first time only)
+  get_url:
+    url: https://getcomposer.org/installer
+    dest: /tmp/installer
   when: composer.stat.exists == false
 
-- name: dowloads composer
-   command:
-    cmd: php composer-setup.php 
-    chdir: /usr/local/bin
-   when: composer.stat.exists == false
+- name: install composer (first time only)
+  shell: cat /tmp/installer | php -- --install-dir=/usr/local/bin
+  when: composer.stat.exists == false
 
-- name: download composer
-  command: 
-    cmd: php -r "unlink('composer-setup.php');" 
-    chdir: /usr/local/bin
-   when: composer.stat.exists == false
+- name: rename composer.phar to composer (first time only)
+  shell: mv /usr/local/bin/composer.phar /usr/local/bin/composer
+  when: composer.stat.exists == false
+
+- name: make composer executable (first time only)
+  file:
+    path: /usr/local/bin/composer
+    mode: a+x
+    state: file
 
 - name: XDebug off
   replace:
@@ -76,15 +72,7 @@
     regexp: '^zend_extension=xdebug.so'
     replace: ';zend_extension=xdebug.so'
 
-- name: edit 15-xdebug.ini
-  blockinfile:
-    path: /etc/php.d/15-xdebug.ini
-    insertafter: EOF
-    block: "{{ item }}"
-  with_file:
-    - files/insert_after_eof_15-xdebugini.txt
-
-- name: touch /var/log/xdebug.log
+- name: touch /var/log/xdebug.log      
   file:
     path: /var/log/xdebug.log
     state: touch
