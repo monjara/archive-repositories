@@ -10,7 +10,6 @@ AddType application/x-httpd-php .php .html
    CustomLog logs/www_access_log combined env=!nolog
  </VirtualHost>
  
- </VirtualHost>
- <Directory "/var/www/html/Application">
+ <Directory "/var/www/html/app">
       AllowOverride All
   </Directory>

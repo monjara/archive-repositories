@@ -47,16 +47,16 @@
   with_file:
     - files/insert_after_eof_httpdconf.txt
       
-#- name: make a symbolic link
-#  file:
-#    src: "/vagrant/bunkamura-ec"
-#    dest: "/var/www/html/bunkamura-ec"
-#    state: link
-#    force: yes
-#
-#- name: apache start / enable
-#  service: 
-#    name: httpd 
-#    state: started 
-#    enabled: yes
+- name: make a symbolic link
+  file:
+    src: "/vagrant/app"
+    dest: "/var/www/html/app"
+    state: link
+    force: yes
+
+- name: apache start / enable
+  service: 
+    name: httpd 
+    state: started 
+    enabled: yes
 
