@@ -46,7 +46,7 @@
   when: log_file.stat.exists == false
 
 - name: create db
-  shell: mysql -u root -p'Tmp_Passw0rd' --connect-expired-password -e "create database 'appdb';"
+  shell: mysql -u root -p'Tmp_Passw0rd' --connect-expired-password -e "create database appdb;"
   when: log_file.stat.exists == false
 
 - name: change root user password
