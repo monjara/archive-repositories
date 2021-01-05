@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "centos/7"
-  config.vm.define "ansible_lamp" do |c|
+  config.vm.define "symfony-server" do |c|
     c.vbguest.installer_hooks[:before_install] = ["yum install -y epel-release", "sleep 1"]
     c.vbguest.installer_options = { allow_kernel_upgrade: true , enablerepo: true }
   end
