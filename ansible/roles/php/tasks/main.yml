@@ -9,7 +9,7 @@
 
 - name: install php/library
   yum:
-    name: ['php', 'php-mysql', 'php-common', 'php-mbstring', 'php-json', 'php-xml', 'php-zip', 'php-curl','php-intl', 'php-apcu', 'php-opcache', 'php-xdebug']
+    name: ['php', 'php-pgsql', 'php-common', 'php-mbstring', 'php-json', 'php-xml', 'php-zip', 'php-curl','php-intl', 'php-apcu', 'php-opcache', 'php-xdebug', 'php-pecl-redis', 'php-gd', 'php-sodium', 'php-amqp']
     state: present
     enablerepo: remi,remi-php72
 

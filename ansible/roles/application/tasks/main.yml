@@ -5,6 +5,19 @@
     owner: root
     group: root
 
+- name: check .symfony exists
+  stat:
+    path: ~/.ssh
+  register: symfony
+
+- name: download symfony
+  shell: wget https://get.symfony.com/cli/installer -O - | bash
+  when: symfony.stat.exists == false
+
+- name: install local web server
+  shell: symfony server:ca:install
+  when: symfony.stat.exists == false
+
 - name: apache restart
   service: 
     name: httpd 
