@@ -21,7 +21,7 @@
 
 - name: deploy .my.cnf
   template:
-    src: files/my.cnf
+    src: templates/my_cnf.j2
     dest: /root/.my.cnf
     owner: root
     group: root
@@ -45,13 +45,30 @@
   shell: mysql -u root -p'Tmp_Passw0rd' --connect-expired-password -e "uninstall plugin validate_password;"
   when: log_file.stat.exists == false
 
-- name: create db
-  shell: mysql -u root -p'Tmp_Passw0rd' --connect-expired-password -e "create database appdb;"
-  when: log_file.stat.exists == false
-
 - name: change root user password
   shell: mysql -u root -p'Tmp_Passw0rd' --connect-expired-password -e "alter user 'root'@'localhost' identified by 'Appl1cation.pass';"
   when: log_file.stat.exists == false
+
+- name: create db
+  mysql_db:
+    name: "{{ db_name }}"
+    state: present
+
+- name: create mysql user
+  mysql_user:
+    name: "{{ db_user }}"
+    host: "{{ db_host }}"
+    password: "{{ db_user_password }}"
+    priv: '*.*:ALL,GRANT'
+    state: present
+
+- name: create root@'%' user
+  mysql_user:
+    name: root
+    host: '%'
+    password: "{{ root_password }}"
+    priv: '*.*:ALL,GRANT'
+    state: present
 
 - name: delete /root/.my.cnf
   file:
