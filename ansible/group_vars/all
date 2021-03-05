@@ -1,0 +1,17 @@
+---
+
+app_name: app
+local_app_name: app
+
+dbuser: dbuser
+dbname: db
+user_password: Database.pas5
+root_password: Database.pas5
+
+# httpd
+ip_address: 192.168.33.10
+port_number: 80
+server_admin: root@localhost
+httpd_user: vagrant
+httpd_group: vagrant
+

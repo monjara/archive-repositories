@@ -1,0 +1,79 @@
+---
+
+- name: check mysql log file exists
+  stat: 
+    path: /var/log/mysqld.log
+  register: log_file
+  changed_when: false
+
+- name: install mysql5.7 
+  yum:
+    name: 'http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm'
+    state: present
+
+- name: install mysql-server 
+  yum:
+    name: mysql-community-server
+    state: present
+
+- name: install MySQL-python
+  yum:
+    name: MySQL-python
+    state: present
+      
+- name: deploy .my.cnf
+  template:
+    src: templates/my_cnf.j2
+    dest: /root/.my.cnf
+    owner: root
+    group: root
+
+- name: mysql start / enable
+  service:
+    name: mysqld
+    state: started
+    enabled: yes
+
+- name: get temporary password
+  shell: cat /var/log/mysqld.log | grep "temporary password" | awk '{print $11}'
+  register: mysql_default_password
+  when: log_file.stat.exists == false
+
+- name: change root user password for updating expiration date
+  shell: mysql -u root -p'{{ mysql_default_password.stdout }}' --connect-expired-password -e "set password for root@'localhost'=password('Tmp_Passw0rd');"
+  when: log_file.stat.exists == false
+
+- name: uninstall validate_password
+  shell: |
+    mysql -u root -p'Tmp_Passw0rd' --connect-expired-password -e "uninstall plugin validate_password;"
+  when: log_file.stat.exists == false
+
+- name: change root user password
+  shell: |
+    mysql -u root -p'Tmp_Passw0rd' --connect-expired-password -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Eccube4.pass';"
+  when: log_file.stat.exists == false
+
+- name: create mysql user
+  mysql_user: 
+    name: "{{ dbuser }}" 
+    host: localhost 
+    password: "{{ user_password }}" 
+    priv: '*.*:ALL,GRANT' 
+    state: present
+
+- name: create root@'%' user
+  mysql_user: 
+    name: root 
+    host: '%' 
+    password: "{{ root_password }}" 
+    priv: '*.*:ALL,GRANT' 
+    state: present
+
+- name: edit my.cnf
+  blockinfile:
+    path: /etc/my.cnf
+    insertafter: EOF
+    block: "{{ item }}"
+  with_file:
+    - files/insert_into_mycnf.txt
+
