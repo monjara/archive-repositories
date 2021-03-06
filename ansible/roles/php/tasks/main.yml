@@ -31,6 +31,9 @@
       - php-posix
       - php-shmop
       - php-gd
+      - php-redis
+      - php-sodium
+      - php-amqp
 
 - name: deploy php.ini
   template:

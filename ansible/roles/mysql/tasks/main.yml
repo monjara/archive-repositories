@@ -50,7 +50,7 @@
 
 - name: change root user password
   shell: |
-    mysql -u root -p'Tmp_Passw0rd' --connect-expired-password -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Eccube4.pass';"
+    mysql -u root -p'Tmp_Passw0rd' --connect-expired-password -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ root_password }}';"
   when: log_file.stat.exists == false
 
 - name: create mysql user

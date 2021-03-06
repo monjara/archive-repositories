@@ -4,6 +4,4 @@
     - setting
     - apache
     - php
-    - postgresql
-    - docker
-    - application
+    - mysql
