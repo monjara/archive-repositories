@@ -1,12 +1,15 @@
 package main
 
 import (
+	"html/template"
 	"log"
 	"net/http"
 	"os"
 
 	"github.com/joho/godotenv"
 )
+
+var tpl = template.Must(template.Pa)
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("<h1>Hello World</h1>"))
