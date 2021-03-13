@@ -28,6 +28,15 @@
         >
       </header>
       <section class="container">
+        <div class="result-count">
+        {{ if .Results }}
+          {{ if (gt .Results.TotalResults 0) }}
+          <p><strong>{{ .Results.TotalResults }}</strong>件見つかりました。</p>
+          {{ else if and (ne .Query "") (eq .Results.TotalResults 0) }}
+          <p>検索結果は見つかりませんでした。: <strong>{{ .Query }}</strong></p>
+          {{ end }}
+        {{ end }}
+        </div>
         <ul class="search-results">
           {{ range.Results.Articles }}
           <li class="news-article">
