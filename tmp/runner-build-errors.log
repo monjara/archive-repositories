@@ -1,2 +1,0 @@
-main.go:13:2: no required module provides package github.com/freshman-tech/news-demo-starter-files/news; to add it:
-	go get github.com/freshman-tech/news-demo-starter-files/news

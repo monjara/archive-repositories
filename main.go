@@ -4,13 +4,12 @@ import (
 	"fmt"
 	"html/template"
 	"log"
-	"monjara/news-go/news"
 	"net/http"
 	"net/url"
 	"os"
 	"time"
 
-	"github.com/freshman-tech/news-demo-starter-files/news"
+	"monjara/news-go/news"
 	"github.com/joho/godotenv"
 )
 
@@ -48,7 +47,7 @@ func searchHandler(newsapi *news.Client) http.HandlerFunc {
 func main() {
 	err := godotenv.Load()
 	if err != nil {
-		log.Println("Error: loading .env file")
+		log.Println("Error loading .env file")
 	}
 
 	port := os.Getenv("PORT")
@@ -58,16 +57,17 @@ func main() {
 
 	apiKey := os.Getenv("NEWS_API_KEY")
 	if apiKey == "" {
-		log.Fatal("Env: apikey must be set")
+		log.Fatal("Env: apiKey must be set")
 	}
 
 	myClient := &http.Client{Timeout: 10 * time.Second}
-	newsapi := news.NewClient(apiKey, 20)
+	newsapi := news.NewClient(myClient, apiKey, 20)
 
 	fs := http.FileServer(http.Dir("assets"))
+
 	mux := http.NewServeMux()
 	mux.Handle("/assets/", http.StripPrefix("/assets/", fs))
-	mux.HandleFunc("/search", searchHandler)
+	mux.HandleFunc("/search", searchHandler(newsapi))
 	mux.HandleFunc("/", indexHandler)
 	http.ListenAndServe(":"+port, mux)
 }
