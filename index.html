@@ -31,7 +31,7 @@
         <div class="result-count">
         {{ if .Results }}
           {{ if (gt .Results.TotalResults 0) }}
-          <p><strong>{{ .Results.TotalResults }}</strong>件見つかりました。</p>
+          <p>約<strong>{{ .Results.TotalResults }}</strong>件の検索結果が見つかりました。<strong>{{ .TotalPages }}</strong>ページ中<strong>{{ .CurrentPage }}</strong>ページ目を表示中</p>
           {{ else if and (ne .Query "") (eq .Results.TotalResults 0) }}
           <p>検索結果は見つかりませんでした。: <strong>{{ .Query }}</strong></p>
           {{ end }}
@@ -54,6 +54,16 @@
           </li>
           {{ end }}
         </ul>
+        <div class="pagination">
+        {{ if . }}
+          {{ if (gt .NextPage 2) }}
+            <a href="/search?q={{ .Query }}&page={{ .PreviousPage }}" class="button previous-page">前へ</a>
+          {{ end }}
+          {{ if (ne .IsLastPage true) }}
+            <a href="/search?q={{ .Query }}&page={{ .NextPage }}" class="button next-page">次へ</a>
+          {{ end }}
+        {{ end }}
+        </div>
       </section>
     </main>
   </body>
