@@ -1,27 +1,58 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(home: Mypage()));
+void main() => runApp(MaterialApp(home: FirstRoute()));
 
-class Mypage extends StatefulWidget{
-  @override
-  _MyPageState createState() => _MyPageState();
-}
-
-class _MyPageState extends State{
-  int _counter = 0;
-  void _incrementCounter(){
-    setState(() {
-      _counter++;
-    });
-  }
+class FirstRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("push button!")),
-      body: Center(child: Text("$_counter")),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-      ) ,
+      appBar: AppBar(
+        title: Text("First Route"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SecondRoute()
+                  )
+                );
+              },
+              child: Text('Push Here',
+                style: TextStyle(fontSize: 20),
+              )
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SecondRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Secound Route"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            RaisedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("Push here",
+                style: TextStyle(fontSize: 20),
+              )
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
