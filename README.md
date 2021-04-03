@@ -11,5 +11,6 @@
 
 | コマンド | 説明                    |
 |:----------:|:------------------------|
-| NERDTree   | F2: NERDTreeを開く <br> F3: NERDTreeを閉じる |
-| commentary | gcc: 行をコメント <br> gc + motion: motionをコメントアウト |
+| ,ga | git add . |
+| ,gc | git commit . |
+| ,gsh | git push . |
