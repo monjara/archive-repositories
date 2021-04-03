@@ -13,6 +13,7 @@ set visualbell
 set showmatch
 set laststatus=2
 set wildmode=list:longest
+set ignorecase
 nnoremap j gj
 nnoremap k gk
 syntax enable
