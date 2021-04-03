@@ -75,12 +75,6 @@ GIT_PS1_SHOWUPSTREAM=auto
 
 # alias設定
 alias vi='nvim'
-alias vvi='nvim ~/.config/nvim/init.vim'
-alias vvl='nvim ~/.config/nvim/local_init.vim'
-alias vvb='nvim ~/.config/nvim/local_bundle.vim'
-alias cv='cd ~/.config/nvim'
-alias vlz='nvim ~/.zshrc_local'
-alias sz='source ~/.zshrc'
 alias ga='git add'
 alias gc='git commit'
 alias gp='git push -u'
