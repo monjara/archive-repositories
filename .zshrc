@@ -79,16 +79,13 @@ alias vvi='nvim ~/.config/nvim/init.vim'
 alias vvl='nvim ~/.config/nvim/local_init.vim'
 alias vvb='nvim ~/.config/nvim/local_bundle.vim'
 alias cv='cd ~/.config/nvim'
-alias vz='nvim ~/Develop/Zsh/.zshrc'
 alias vlz='nvim ~/.zshrc_local'
 alias sz='source ~/.zshrc'
-alias cz='cd ~/Develop/Zsh'
 alias ga='git add'
 alias gc='git commit'
 alias gp='git push -u'
 alias gl='git log'
 alias gs='git status'
-alias t='test'
 
 # .zsh_local読み込み
 [ -f $ZDOTDIR/.zshrc_local ] && . $ZDOTDIR/.zshrc_local
