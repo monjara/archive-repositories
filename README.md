@@ -29,3 +29,13 @@
 |:----------:|:------------------------|
 | ,h         | split                   |
 | ,v         | vsplit                  |
+
+#### session management
+
+| コマンド   | 説明                    |
+|:----------:|:------------------------|
+| ,so        | :OpenSession            |
+| ,ss        | :SaveSession            |
+| ,sd        | :DeleteSession          |
+| ,sc        | :CloseSession           |
+
