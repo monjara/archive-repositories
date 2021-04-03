@@ -39,3 +39,11 @@
 | ,sd        | :DeleteSession          |
 | ,sc        | :CloseSession           |
 
+#### session management
+
+| コマンド   | 説明                    |
+|:----------:|:------------------------|
+| <Tab>      | gt                      |
+| <S-Tab>    | gT                      |
+| <S-t>      | tabnew                  |
+
