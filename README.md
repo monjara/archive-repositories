@@ -7,7 +7,8 @@
 | NERDTree   | F2: NERDTreeを開く <br> F3: NERDTreeを閉じる                                |
 | commentary | gcc: 行をコメント <br> gc + motion: motionをコメントアウト                  |
 | fugitive   | gitコマンド補完（[Gitマッピング](https://github.com/monjara/nvim#git)参照） |
-| airline    | |
+| gitgutter  | 差分表示                                                                    |
+| airline    | ステータスバーデザイン変更                                                  |
 
 
 ### マッピング
