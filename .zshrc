@@ -82,4 +82,4 @@ alias gl='git log'
 alias gs='git status'
 
 # .zsh_local読み込み
-[ -f $ZDOTDIR/.zshrc_local ] && . $ZDOTDIR/.zshrc_local
+[ -f $HOME/.zshrc_local ] && source $HOME/.zshrc_local
