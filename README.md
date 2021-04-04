@@ -9,6 +9,7 @@
 | fugitive   | gitコマンド補完（[Gitマッピング](https://github.com/monjara/nvim#git)参照） |
 | gitgutter  | 差分表示                                                                    |
 | airline    | ステータスバーデザイン変更                                                  |
+| grep.vim   | 検索機能([詳細](https://github.com/vim-scripts/grep.vim))                   |
 
 
 ### マッピング
