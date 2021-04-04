@@ -2,10 +2,13 @@
 ## 使い方
 ### プラグイン
 
-| プラグイン | 説明                                                       |
-|:----------:|:-----------------------------------------------------------|
-| NERDTree   | F2: NERDTreeを開く <br> F3: NERDTreeを閉じる               |
-| commentary | gcc: 行をコメント <br> gc + motion: motionをコメントアウト |
+| プラグイン | 説明                                                                        |
+|:----------:|:----------------------------------------------------------------------------|
+| NERDTree   | F2: NERDTreeを開く <br> F3: NERDTreeを閉じる                                |
+| commentary | gcc: 行をコメント <br> gc + motion: motionをコメントアウト                  |
+| fugitive   | gitコマンド補完（[Gitマッピング](https://github.com/monjara/nvim#git)参照） |
+| airline    | |
+
 
 ### マッピング
 #### Git
