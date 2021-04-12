@@ -80,6 +80,9 @@ alias gc='git commit'
 alias gp='git push -u'
 alias gl='git log'
 alias gs='git status'
+# CircleCiCLI用alias
+alias civa='circleci config validate'
+alias cile='circleci local execute'
 
 # .zsh_local読み込み
 [ -f $HOME/.zshrc_local ] && source $HOME/.zshrc_local
