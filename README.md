@@ -3,6 +3,7 @@
 ### 追加設定
 - local_init.vim
 - local_bundles.vim
+
 プラグイン追加後は以下コマンド実行
 ```
 :PlugInstall
