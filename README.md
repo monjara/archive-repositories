@@ -1,6 +1,8 @@
 # nvim
 ## 使い方
 ### 追加設定
+
+追加する設定は下記ファイルに記述する。
 - local_init.vim
 - local_bundles.vim
 
