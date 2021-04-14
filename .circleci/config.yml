@@ -1,16 +1,12 @@
 version: 2.1
-executors:
-  my-executor:
-    docker:
-      - image: cimg/ruby:2.7.1-node
-    environment:
-      BUNDLE_PATH: vendor/bundle
+commands:
+  sayhello:
+    steps:
+      - run: echo hello world
+
 jobs:
   build:
     docker:
-      - image: cimg/ruby:2.7.1-node
-    executor: my-executor
-    environment:
-      RAILS_ENV: production
+      - image: cimg/node:lts
     steps:
-      - run: echo Hello World
+      - sayhello
