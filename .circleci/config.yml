@@ -1,18 +1,11 @@
-version: 2.1
-commands:
-  sayhello:
-    description: "Say Hello"
-    parameters:
-      to:
-        type: string
-        default: "World"
-    steps:
-      - run: echo Hello << parameters.to >>
-
-jobs:
-  build:
-    docker:
-      - image: cimg/node:lts
-    steps:
-      - sayhello:
-          to: Everyone
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - install_deps
+      - test_a:
+          requires:
+            - install_deps
+      - test_b:
+          requires:
+            - install_deps
