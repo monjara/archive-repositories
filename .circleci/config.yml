@@ -1,11 +1,26 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: busybox
+    steps:
+      - run: echo "build job"
+  deploy:
+    docker:
+      - image: busybox
+    steps:
+      - run: echo "deploy job"
+
 workflows:
   version: 2
-  workflow:
+  build-and-deploy:
     jobs:
-      - install_deps
-      - test_a:
+      - build
+      - hold:
+          type: approval
           requires:
-            - install_deps
-      - test_b:
+            - build
+      - deploy:
           requires:
-            - install_deps
+            - hold
