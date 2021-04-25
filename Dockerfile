@@ -1,4 +1,6 @@
 FROM golang:latest
 
-RUN mkdir /app
-WORKDIR /app
+ENV $APP_PATH = /app
+
+WORKDIR $APP_PATH
+
