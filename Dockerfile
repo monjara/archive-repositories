@@ -1,4 +1,6 @@
 FROM golang:latest
 
-RUN mkdir /app
-WORKDIR /app
+ENV APP_DIR=/app
+WORKDIR $APP_DIR
+
+RUN go get github.com/gin-gonic/gin
