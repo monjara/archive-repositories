@@ -1,5 +1,5 @@
 # Shell
-## trackPointKeyboardII.sh
-Lenove trackpoint keyboardIIが接続されているとき
-
-中ボタンクリックによる貼付けを無効化する。
+## 機能
+| shell                   | 機能                                                                                            |
+| :---------------------: | :---------------------------------------------------------------------------------------------- |
+| trackPointKeyboardII.sh | Lenove trackpoint keyboardIIが接続されているとき<br>中ボタンクリックによる貼付けを無効化する。  |
