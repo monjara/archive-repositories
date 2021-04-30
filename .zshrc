@@ -80,6 +80,8 @@ alias gc='git commit'
 alias gp='git push -u'
 alias gl='git log'
 alias gs='git status'
+
+alias ls='ls -a'
 # CircleCiCLI用alias
 alias civa='circleci config validate'
 alias cile='circleci local execute'
