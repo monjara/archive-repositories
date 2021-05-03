@@ -1,23 +1,14 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"os"
-	"time"
 
-	"github.com/jinzhu/gorm"
+	"github.com/monjara/gin-crud/src/config"
+	"github.com/monjara/gin-crud/src/model"
+
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/joho/godotenv"
 )
-
-// User is who access this servise
-type User struct {
-	gorm.Model
-	Name     string    `json:"name"`
-	Age      int       `json:"age"`
-	Birthday time.Time `json:"birthday"`
-}
 
 func main() {
 	err := godotenv.Load()
@@ -25,24 +16,7 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	db := gormConnect()
-
-	db.Set("gorm:table_options", "ENGINE=InnoDB")
-	db.AutoMigrate(&User{})
-
+	db := config.GormConnect()
 	defer db.Close()
-	db.LogMode(true)
-}
-
-func gormConnect() *gorm.DB {
-	DBMS := os.Getenv("DBMS")
-	DBCONN := os.Getenv("DATABASE_CONNECTION")
-	db, err := gorm.Open(DBMS, DBCONN)
-
-	if err != nil {
-		panic(err.Error())
-	}
-
-	fmt.Println("connected database: ", &db)
-	return db
+	db.AutoMigrate(&model.User{})
 }
