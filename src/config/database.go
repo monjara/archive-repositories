@@ -20,7 +20,6 @@ func GormConnect() *gorm.DB {
 	fmt.Println("connected database: ", &db)
 
 	db.Set("gorm:table_options", "ENGINE=InnoDB")
-	db.LogMode(true)
 
 	return db
 }
