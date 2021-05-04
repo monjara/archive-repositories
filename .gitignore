@@ -3,3 +3,6 @@
 
 # go.sum
 go.sum
+
+# binary
+main
