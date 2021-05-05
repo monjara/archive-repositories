@@ -1,0 +1,6 @@
+# go project
+go.sum
+
+# env
+.env
+
