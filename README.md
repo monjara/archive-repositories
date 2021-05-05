@@ -1,11 +1,12 @@
 # archive-repositories
 完了したリポジトリを追加
 ```
-git remote add $REPOSITORY git@github.com:monjara/$REPOSITORY
+git remote add $REPOSITORY git@github.com:monjara/$REPOSITORY.git
 git fetch $REPOSITORY
 git read-tree --prefix=$REPOSITORY/ $REPOSITORY/master
 git checkout -- .
 git add .
 git commit -m "add $REPOSITORY"
-git merge -s subtree $REPOSITORY/master --allow-unrelated-histories
+git merge -s subtree $REPOSITORY/master --allow-unrelated-histories -m "Merge remote-tracking branch "\'"$REPOSITORY/master"\'" into main"
+git push -u origin main
 ```
