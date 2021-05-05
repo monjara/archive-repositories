@@ -1,3 +1,3 @@
-import ChatHistory from "./ChatHistory.jsx";
+import Header from "./Header.jsx";
 
-export default ChatHistory;
+export default Header;
