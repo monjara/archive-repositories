@@ -1,0 +1,27 @@
+- name: install yum-utils
+  yum:
+    name: yum-utils
+    state: present
+
+- name: add docker repo
+  shell: "yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo"
+  args:
+    chdir: "/etc/yum.repos.d"
+    creates: docker-ce.repo
+
+- name: install the latest version of Docker Engine and containerd
+  yum:
+    name:
+      - docker-ce-20.10.2-3.el7
+      - docker-ce-cli-20.10.2-3.el7
+      - containerd.io
+    state: present
+
+- name: install docker-compose
+  shell: curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  args:
+    warn: no
+
+- name: Apply executable permissions
+  shell: chmod +x /usr/local/bin/docker-compose
+

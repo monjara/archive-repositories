@@ -1,0 +1,25 @@
+- name: timedatactl set timezone
+  timezone:
+    name: Asia/Tokyo
+
+- name: Disable SELinux
+  selinux:
+    state: disabled
+
+- name: install git
+  yum:
+    name: git
+    state: present
+
+- name: install wget
+  yum:
+    name: wget
+    state: present
+
+- name: install yarn
+  shell: curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+
+- name: install yarn
+  yum:
+    name: yarn
+    state: present

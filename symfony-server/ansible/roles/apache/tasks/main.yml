@@ -1,0 +1,33 @@
+---
+
+- name: install Apache
+  yum:
+    name: httpd
+    state: present
+
+- name: install mod_ssl
+  yum:
+    name: mod_ssl
+    state: present
+
+- name: states welcome.conf_org
+  stat: 
+    path: /etc/httpd/conf.d/welcome.conf
+  register: welcome_conf 
+
+- name: rename welcome.conf
+  shell: mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.conf_org
+  when: welcome_conf.stat.exists
+
+- name: deploy httpd.conf 
+  template:
+    src: templates/httpd_conf.j2
+    dest: /etc/httpd/conf/httpd.conf
+    backup: yes
+
+- name: apache start / enable
+  service: 
+    name: httpd 
+    state: started 
+    enabled: yes
+

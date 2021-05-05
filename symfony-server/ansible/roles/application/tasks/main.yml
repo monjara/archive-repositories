@@ -1,0 +1,32 @@
+- name: check .symfony exists
+  stat:
+    path: ~/.ssh
+  register: symfony
+
+- name: download symfony
+  shell: wget https://get.symfony.com/cli/installer -O - | bash
+  when: symfony.stat.exists == false
+
+- name: pass the environment variable
+  shell: echo 'export PATH="$HOME/.symfony/bin:$PATH"' >> ~/.bash_profile
+  when: symfony.stat.exists == false
+
+- name: source bach_profile
+  shell: source ~/.bash_profile
+  when: symfony.stat.exists == false
+
+- name: install local web server
+  shell: symfony server:ca:install
+  when: symfony.stat.exists == false
+
+- name: deploy index.php
+  template:
+    src: files/index.php
+    dest: /var/www/html/index.php
+    owner: root
+    group: root
+
+- name: apache restart
+  service: 
+    name: httpd 
+    state: restarted 
