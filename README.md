@@ -24,3 +24,5 @@ git clone git@github.com:monjara/archive-repositories.git git@github.com:monjara
 cd $REPOSITORY
 git filter-branch --subdirectory-filter subdir HEAD
 ```
+## 参考
+- [Git で複数のリポジトリをまとめたり、逆に切り出したりする](https://qiita.com/uasi/items/77d41698630fef012f82)
