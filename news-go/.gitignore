@@ -1,0 +1,5 @@
+news-go
+.env
+
+# go get
+go.sum
