@@ -4,11 +4,7 @@ import Footer from "./Footer";
 
 export default class Layout extends React.Component {
   render() {
-    return (
-      <div>
-        <Header />
-        <Footer />
-      </div>
-    );
+    let components = [<Header />, <Footer />];
+    return <div>{components}</div>;
   }
 }
