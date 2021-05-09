@@ -6,6 +6,8 @@ export default class Layout extends React.Component {
     return (
       <div>
         <Header />
+        <Header />
+        <Header />
       </div>
     );
   }
