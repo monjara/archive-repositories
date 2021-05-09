@@ -3,10 +3,10 @@ import ReactDOM from "react-dom";
 
 class Layout extends React.Component {
   render() {
+    let name = "test_name";
     return (
       <div>
-        <h1>Hello!</h1>
-        <h1>It's works!</h1>
+        <h1>Hello! {name}!</h1>
       </div>
     );
   }
