@@ -4,10 +4,13 @@ import ReactDOM from "react-dom";
 class Layout extends React.Component {
   render() {
     return (
-      <h1>Hello!</h1>
+      <div>
+        <h1>Hello!</h1>
+        <h1>It's works!</h1>
+      </div>
     );
   }
 }
 
-const app = document.getElementById('app');
-ReactDOM.render(<Layout/>, app);
+const app = document.getElementById("app");
+ReactDOM.render(<Layout />, app);
