@@ -13,7 +13,7 @@ func TestNew(t *testing.T) {
 	} else {
 		tracer.Trace("Hello, trace package")
 		if buf.String() != "Hello, trace package\n" {
-			t.Error("Error response '%s'", buf.String())
+			t.Errorf("Error response '%s'", buf.String())
 		}
 	}
 }
