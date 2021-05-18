@@ -46,16 +46,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/heart.svg
-    - assets/images/heart_active.svg
-    - assets/images/home.svg
-    - assets/images/home_active.svg
-    - assets/images/person.svg
-    - assets/images/person_active.svg
-    - assets/images/plus.svg
-    - assets/images/plus_active.svg
-    - assets/images/search.svg
-    - assets/images/search_active.svg
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
