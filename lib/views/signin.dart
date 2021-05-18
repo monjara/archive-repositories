@@ -10,7 +10,7 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarMain(context),
+      appBar: appBarMain(context),
       body: Container(
         alignment: Alignment.bottomCenter,
         child: Container(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget AppBarMain(BuildContext context) {
+Widget appBarMain(BuildContext context) {
   return AppBar(
     centerTitle: true,
     backgroundColor: Colors.black,
