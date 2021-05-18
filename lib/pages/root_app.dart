@@ -1,3 +1,4 @@
+import 'package:flustagram/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -11,11 +12,57 @@ class _RootAppState extends State<RootApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.black,
       appBar: getAppBar(),
+      backgroundColor: Colors.black,
+      body: getBody(),
       bottomNavigationBar: getFooter(),
     );
   }
+  Widget getBody() {
+    List<Widget> pages = [
+      HomePage(),
+      Center(
+          child: Text("Home Page", style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),)
+      ),
+      Center(
+          child: Text("Search Page", style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),)
+      ),
+      Center(
+          child: Text("Upload Page", style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),)
+      ),
+      Center(
+          child: Text("Activity Page", style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),)
+      ),
+      Center(
+          child: Text("Account Page", style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),)
+      ),
+    ];
+    return IndexedStack(
+      index: pageIndex,
+      children: pages,
+    );
+  }
+
   Widget getAppBar() {
     if (pageIndex == 0) {
       return AppBar(
@@ -54,6 +101,7 @@ class _RootAppState extends State<RootApp> {
       );
     }
   }
+
   Widget getFooter() {
     List bottomItems = [
       pageIndex == 0 ? "assets/images/home_active.svg"
