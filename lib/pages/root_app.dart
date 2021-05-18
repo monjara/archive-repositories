@@ -12,10 +12,48 @@ class _RootAppState extends State<RootApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Colors.black,
+      appBar: getAppBar(),
       bottomNavigationBar: getFooter(),
     );
   }
-
+  Widget getAppBar() {
+    if (pageIndex == 0) {
+      return AppBar(
+        backgroundColor: Colors.black,
+       title: Row(
+         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+         children: <Widget>[
+           SvgPicture.asset("assets/images/camera.svg", width: 30,),
+           Text("Flustagram", style: TextStyle(
+             fontFamily: "Billabong",
+             fontSize: 35
+           )),
+           SvgPicture.asset("assets/images/airplain.svg", width: 30,),
+         ],
+       )
+      );
+    } else if (pageIndex == 1) {
+      return null;
+    } else if (pageIndex == 2) {
+      return AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.black,
+        title: Text("Upload"),
+      );
+    } else if (pageIndex == 3) {
+      return AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.black,
+        title: Text("Activity"),
+      );
+    } else {
+      return AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.black,
+        title: Text("Account"),
+      );
+    }
+  }
   Widget getFooter() {
     List bottomItems = [
       pageIndex == 0 ? "assets/images/home_active.svg"
