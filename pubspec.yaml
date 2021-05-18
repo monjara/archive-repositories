@@ -45,13 +45,17 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/heart.svg
+    - assets/images/heart_active.svg
     - assets/images/home.svg
-    - assets/images/man.svg
+    - assets/images/home_active.svg
+    - assets/images/person.svg
+    - assets/images/person_active.svg
     - assets/images/plus.svg
+    - assets/images/plus_active.svg
     - assets/images/search.svg
+    - assets/images/search_active.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -7,6 +7,7 @@ class RootApp extends StatefulWidget {
 }
 
 class _RootAppState extends State<RootApp> {
+  int pageIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,11 +18,16 @@ class _RootAppState extends State<RootApp> {
 
   Widget getFooter() {
     List bottomItems = [
-      "assets/images/home.svg",
-      "assets/images/search.svg",
-      "assets/images/plus.svg",
-      "assets/images/heart.svg",
-      "assets/images/man.svg",
+      pageIndex == 0 ? "assets/images/home_active.svg"
+                     : "assets/images/home.svg",
+      pageIndex == 1 ? "assets/images/search_active.svg"
+                     : "assets/images/search.svg",
+      pageIndex == 2 ? "assets/images/plus_active.svg"
+                     : "assets/images/plus.svg",
+      pageIndex == 3 ? "assets/images/heart_active.svg"
+                     : "assets/images/heart.svg",
+      pageIndex == 4 ? "assets/images/person_active.svg"
+                     : "assets/images/person.svg",
     ];
 
     return Container(
@@ -35,10 +41,18 @@ class _RootAppState extends State<RootApp> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(bottomItems.length, (index) {
-            return SvgPicture.asset(bottomItems[index], width: 26,color: Colors.white,);
+            return InkWell(
+              onTap: () => selectedTab(index),
+              child: SvgPicture.asset(bottomItems[index], width: 36, color: Colors.white,),
+            );
           }),
         ),
       )
     );
+  }
+  selectedTab(index){
+    setState(() {
+      pageIndex = index;
+    });
   }
 }
