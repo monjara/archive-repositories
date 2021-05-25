@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/views/sidebar.dart';
 
 class About extends StatefulWidget {
   @override
@@ -12,7 +11,6 @@ class _AboutState extends State<About> {
     return Scaffold(
       body: Row(
         children: [
-          Sidebar(),
           Container(
             child: Column(
               children: [

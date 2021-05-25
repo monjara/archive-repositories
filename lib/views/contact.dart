@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/views/sidebar.dart';
 
 class Contact extends StatefulWidget {
   @override
@@ -13,7 +12,6 @@ class _ContactState extends State<Contact> {
     return Scaffold(
       body: Row(
         children: [
-          Sidebar(),
           Container(
             child: Column(
               children: [
