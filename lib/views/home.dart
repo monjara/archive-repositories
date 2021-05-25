@@ -13,6 +13,13 @@ class _HomeState extends State<Home> {
       body: Row(
         children: [
           Sidebar(),
+          Container(
+            child: Column(
+              children: [
+                Text("Home"),
+              ],
+            ),
+          ),
         ],
       ),
     );
