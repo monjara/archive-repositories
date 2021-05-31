@@ -1,25 +1,7 @@
 import 'package:flutter/material.dart';
 
-class About extends StatefulWidget {
-  @override
-  _AboutState createState() => _AboutState();
-}
-
-class _AboutState extends State<About> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        children: [
-          Container(
-            child: Column(
-              children: [
-                Text("About"),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+Widget getAboutBody() {
+  return Container(
+    child: Text("about")
+  );
 }

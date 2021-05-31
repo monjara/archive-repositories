@@ -19,14 +19,14 @@ class _RootAppState extends State<RootApp> {
       body: Row(
         children: [
           getSideBar(context),
-          getHomeBody(),
+          getBody(),
         ],
       ),
     );
   }
 
   Widget getBody() {
-    List<Widget> pages = [getHomeBody(), Works(), About(), Contact()];
+    List<Widget> pages = [getHomeBody(), getWorksBody(), getAboutBody(), getContactBody()];
     return IndexedStack(
       index: pageIndex,
       children: pages,
