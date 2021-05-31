@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/root_app.dart';
 import 'package:portfolio/theme.dart';
-import 'package:portfolio/views/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         primaryColor: HexColor('fddbd0'),
         primarySwatch: Colors.pink,
       ),
-      home: Home(),
+      home: RootApp(),
     );
   }
 }

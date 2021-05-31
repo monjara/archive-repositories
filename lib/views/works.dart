@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-Widget getHomeBody() {
+Widget getWorksBody() {
   return Container(
-    child: Text("home")
+    child: Text("works")
   );
 }
