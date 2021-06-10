@@ -5,21 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>javascript適用</title>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-        function createParagraph() {
-            let para = document.createElement('p');
-            para.textContent = 'ボタンが押されました!';
-            document.body.appendChild(para);
-        }
-
-        const buttons = document.querySelectorAll('button');
-
-        for(let i = 0; i < buttons.length ; i++) {
-            buttons[i].addEventListener('click', createParagraph);
-        }
-        });
-    </script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <button>クリック</button>
