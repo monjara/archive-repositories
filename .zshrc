@@ -73,6 +73,9 @@ GIT_PS1_SHOWUNTRACKEDFILES=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUPSTREAM=auto
 
+# 環境変数
+export LANG=ja_JP.UTF-8
+
 # alias設定
 alias vi='nvim'
 alias ga='git add'
