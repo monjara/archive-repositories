@@ -1,5 +1,6 @@
 import React from "react";
 import {Home, About, Contact} from './pages';
+import {Layout} from "./layout";
 
 function App() {
     return (
