@@ -4,6 +4,6 @@ const Layout = () => (
     <div>
         This is Layout
     </div>
-)
+);
 
 export { Layout };
