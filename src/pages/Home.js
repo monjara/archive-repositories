@@ -4,7 +4,8 @@ import {Layout} from "../layout";
 
 const Home = (props) => (
     <Layout>
-        This is Home;
+        <h1 className='text-2xl'>Spa-sample Home</h1>
+        <p>This is sample</p>
     </Layout>
 );
 

@@ -5,24 +5,27 @@ import {
     Route
 } from "react-router-dom";
 import {Home, About, Contact} from './pages';
-import {Nav} from "./layout";
+import {Nav,Footer} from "./layout";
 
 function App() {
     return (
-        <Router>
-            <Nav/>
-            <Switch>
-                <Router path='/about'>
-                    <About/>
-                </Router>
-                <Router path='/contact'>
-                    <Contact/>
-                </Router>
-                <Router path='/'>
-                    <Home/>
-                </Router>
-            </Switch>
-        </Router>
+        <div className='flex flex-col h-screen'>
+            <Router>
+                <Nav/>
+                <Switch>
+                    <Router path='/about'>
+                        <About/>
+                    </Router>
+                    <Router path='/contact'>
+                        <Contact/>
+                    </Router>
+                    <Router path='/'>
+                        <Home/>
+                    </Router>
+                </Switch>
+                <Footer/>
+            </Router>
+        </div>
     );
 }
 
