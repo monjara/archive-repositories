@@ -1,0 +1,11 @@
+---
+
+- name: timedatactl set timezone
+  timezone:
+    name: Asia/Tokyo
+
+- name: disable SELinux
+  selinux:
+    state: disabled
+  timezone:
+    name: Asia/Tokyo
