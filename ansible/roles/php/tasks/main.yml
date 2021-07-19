@@ -1,0 +1,65 @@
+---
+
+- name: install epel-release
+  yum:
+    name: epel-release
+    state: present
+
+- name: install remi-release-7.rpm
+  yum:
+    name: 'http://rpms.famillecollet.com/enterprise/remi-release-7.rpm'
+
+- name:
+  yum:
+    name: "{{ packages }}"
+    state: present
+    enablerepo: remi-php80
+  vars:
+    packages:
+      - php
+      - php-mysql
+      - php-common
+      - php-mbstring
+      - php-json
+      - php-xml
+      - php-zip
+      - php-curl
+      - php-intl
+      - php-apcu
+      - php-opcache
+      - php-bcmath
+      - php-xdebug
+      - php-imagick
+      - php-posix
+      - php-shmop
+      - php-gd
+      - php-redis
+      - php-sodium
+      - php-amqp
+
+- name: check composer
+  stat:
+    path: /usr/local/bin/composer
+  register: composer
+  changed_when: false
+
+- name: download composer installer (first time only)
+  get_url:
+    url: https://getcomposer.org/installer
+    dest: /tmp/installer
+  when: composer.stat.exists == false
+
+- name: install composer (first time only)
+  shell: cat /tmp/installer | php -- --install-dir=/usr/local/bin
+  when: composer.stat.exists == false
+
+- name: rename composer.phar to composer (first time only)
+  shell: mv /usr/local/bin/composer.phar /usr/local/bin/composer
+  when: composer.stat.exists == false
+
+- name: make composer executable (first time only)
+  file:
+    path: /usr/local/bin/composer
+    mode: a+x
+    state: file
+
