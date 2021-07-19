@@ -1,5 +1,4 @@
 ---
-
 - name: timedatactl set timezone
   timezone:
     name: Asia/Tokyo
@@ -17,12 +16,14 @@
     mode: 644
     backup: yes
 
-- name: install commands
+- name: install packages
   yum:
-    name: "{{ commands }}"
+    name: "{{ packages }}"
     state: present
   vars:
-    - wget
-    - git
-    - zip
-    - unzip
+    packages:
+      - yum-utils
+      - wget
+      - git
+      - zip
+      - unzip
