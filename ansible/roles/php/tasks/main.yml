@@ -16,26 +16,26 @@
   vars:
     packages:
       - php
-      - php-mysql
-      - php-common
-      - php-mbstring
-      - php-json
-      - php-xml
-      - php-zip
-      - php-curl
-      - php-intl
-      - php-apcu
-      - php-opcache
-      - php-bcmath
-      - php-xdebug
-      - php-imagick
-      - php-posix
-      - php-shmop
-      - php-gd
-      - php-redis
-      - php-sodium
       - php-amqp
+      - php-apcu
+      - php-bcmath
+      - php-common
+      - php-curl
       - php-fpm
+      - php-gd
+      - php-imagick
+      - php-intl
+      - php-json
+      - php-mbstring
+      - php-mysql
+      - php-opcache
+      - php-posix
+      - php-redis
+      - php-shmop
+      - php-sodium
+      - php-xml
+      - php-xdebug
+      - php-zip
 
 - name: check composer
   stat:
