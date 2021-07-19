@@ -35,6 +35,7 @@
       - php-redis
       - php-sodium
       - php-amqp
+      - php-fpm
 
 - name: check composer
   stat:
