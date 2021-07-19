@@ -62,3 +62,25 @@
     path: /usr/local/bin/composer
     mode: a+x
     state: file
+
+- name: deploy www.conf.j2
+  template:
+    src: templates/www.conf.j2
+    dest: /etc/php-fpm.d/www.conf
+    owner: root
+    group: root
+    mode: '644'
+    backup: yes
+
+- name: create /var/run/php directory if it does not exitst
+  file:
+    path: /var/run/php
+    state: directory
+    mode: '755'
+
+- name: systemctl start php-fpm
+  service:
+    name: php-fpm
+    state: started
+    enabled: yes
+

@@ -1,15 +1,15 @@
 [nginx-stable]
-name: "{{ nginx.repo.nginx-stable.name }}"
-baseurl: "{{ nginx.repo.nginx-stable.baseurl }}"
-gpgcheck: "{{ nginx.repo.nginx-stable.gpgcheck }}"
-enabled: "{{ nginx.repo.nginx-stable.enabled }}"
-gpgkey: "{{ nginx.repo.nginx-stable.gpgkey }}"
-module_hotfixes: "{{ nginx.repo.nginx-stable.module_hotfixes }}"
+name={{ nginx.repo.nginx_stable.name }}
+baseurl={{ nginx.repo.nginx_stable.baseurl }}
+gpgcheck={{ nginx.repo.nginx_stable.gpgcheck }}
+enabled={{ nginx.repo.nginx_stable.enabled }}
+gpgkey={{ nginx.repo.nginx_stable.gpgkey }}
+module_hotfixes={{ nginx.repo.nginx_stable.module_hotfixes }}
 
 [nginx-mainline]
-name: "{{ nginx.repo.nginx-mainline.name }}"
-baseurl: "{{ nginx.repo.nginx-mainline.baseurl }}"
-gpgcheck: "{{ nginx.repo.nginx-mainline.gpgcheck }}"
-enabled: "{{ nginx.repo.nginx-mainline.enabled }}"
-gpgkey: "{{ nginx.repo.nginx-mainline.gpgkey }}"
-module_hotfixes: "{{ nginx.repo.nginx-mainline.module_hotfixes }}"
+name={{ nginx.repo.nginx_mainline.name }}
+baseurl={{ nginx.repo.nginx_mainline.baseurl }}
+gpgcheck={{ nginx.repo.nginx_mainline.gpgcheck }}
+enabled={{ nginx.repo.nginx_mainline.enabled }}
+gpgkey={{ nginx.repo.nginx_mainline.gpgkey }}
+module_hotfixes={{ nginx.repo.nginx_mainline.module_hotfixes }}

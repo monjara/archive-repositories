@@ -5,3 +5,9 @@
     cmd: composer install
     chdir: "{{ project.dir }}"
   become: no
+
+- name: make a symbolic link
+  file: 
+    src: "{{ project.dir }}"
+    dest: "{{ project.link }}"
+    state: link
