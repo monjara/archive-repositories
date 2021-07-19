@@ -4,6 +4,7 @@
   become: true
   roles:
     - system
-    - web
+#    - web
     - php
-    - database
+#    - database
+    - application
