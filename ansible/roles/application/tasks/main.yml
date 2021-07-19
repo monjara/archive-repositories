@@ -1,0 +1,6 @@
+---
+
+- name: composer install on project
+  composer:
+    command: install
+    working_dir: "{{ project.dir }}"
