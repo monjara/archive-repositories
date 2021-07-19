@@ -1,0 +1,15 @@
+[nginx-stable]
+name: "{{ nginx.repo.nginx-stable.name }}"
+baseurl: "{{ nginx.repo.nginx-stable.baseurl }}"
+gpgcheck: "{{ nginx.repo.nginx-stable.gpgcheck }}"
+enabled: "{{ nginx.repo.nginx-stable.enabled }}"
+gpgkey: "{{ nginx.repo.nginx-stable.gpgkey }}"
+module_hotfixes: "{{ nginx.repo.nginx-stable.module_hotfixes }}"
+
+[nginx-mainline]
+name: "{{ nginx.repo.nginx-mainline.name }}"
+baseurl: "{{ nginx.repo.nginx-mainline.baseurl }}"
+gpgcheck: "{{ nginx.repo.nginx-mainline.gpgcheck }}"
+enabled: "{{ nginx.repo.nginx-mainline.enabled }}"
+gpgkey: "{{ nginx.repo.nginx-mainline.gpgkey }}"
+module_hotfixes: "{{ nginx.repo.nginx-mainline.module_hotfixes }}"

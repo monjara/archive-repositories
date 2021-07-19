@@ -1,0 +1,12 @@
+---
+- name: deploy nginx.repo.j2
+  template:
+    src: templates/nginx.repo.j2
+    dest: /etc/yum.repos.d/nginx.repo
+    owner: root
+    group: root
+    mode: 644
+
+- name: install nginx
+  yum:
+    name: nginx
