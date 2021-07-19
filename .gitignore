@@ -1,3 +1,5 @@
+###> IDE, text-editor ###
+.idea
 
 ###> symfony/framework-bundle ###
 /.env.local
