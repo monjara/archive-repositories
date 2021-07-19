@@ -2,4 +2,4 @@
 
 project:
   name: panda
-  dir: home/vagrant/panda
+  dir: /vagrant/panda

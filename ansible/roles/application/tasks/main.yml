@@ -1,6 +1,7 @@
 ---
 
 - name: composer install on project
-  composer:
-    command: install
-    working_dir: "{{ project.dir }}"
+  command: 
+    cmd: composer install
+    chdir: "{{ project.dir }}"
+  become: no
