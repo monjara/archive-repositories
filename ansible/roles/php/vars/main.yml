@@ -1,0 +1,14 @@
+---
+
+www:
+  conf:
+    www:
+      user: nginx
+      group: nginx
+      listen:
+        path: /var/run/php/php7.4-fpm.sock
+        owner: nginx
+        group: nginx
+        mode: "0660"
+        allowed_clients: 127.0.0.1
+
