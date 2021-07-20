@@ -10,11 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Member
+ * @package App\Entity
  *
  * @ORM\Table(name="d_member")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\Entity(repositoryClass="Repository\MemberRepository")
- * @package App\Entity
  */
 class Member
 {

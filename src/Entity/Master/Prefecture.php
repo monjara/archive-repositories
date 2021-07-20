@@ -7,13 +7,13 @@ namespace App\Entity\Master;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Sex
+ * Class Prefecture
  * @package App\Entity\Master
  *
- * @ORM\Table(name="m_sex")
+ * @ORM\Table(name="m_prefecture")
  * @ORM\InheritanceType("SINGLE_TABLE")
  */
-class Sex extends AbstractMasterEntity
+class Prefecture extends AbstractMasterEntity
 {
 
 }
