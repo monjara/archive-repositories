@@ -1,0 +1,16 @@
+---
+
+db:
+  ms: 
+    name: postgresql
+    version: 13
+    repository: https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+    package: postgresql13-server
+  database:
+    name: test_db
+    user: 
+      name: test_user
+      password: test_password
+      priv: ALL
+    encoding: UTF-8
+

@@ -29,6 +29,8 @@
       - php-mbstring
       - php-mysql
       - php-opcache
+      - php-pdo
+      - php-pgsql
       - php-posix
       - php-redis
       - php-shmop
