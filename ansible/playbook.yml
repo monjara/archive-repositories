@@ -6,5 +6,5 @@
     - system
     - web
     - php
-#    - database
+    - database
     - application
