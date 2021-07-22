@@ -14,7 +14,6 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="d_member")
  * @ORM\InheritanceType("SINGLE_TABLE")
- * @ORM\Entity(repositoryClass="Repository\MemberRepository")
  */
 class Member
 {
