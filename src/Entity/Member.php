@@ -5,116 +5,61 @@ namespace App\Entity;
 
 
 use DateTime;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\InheritanceType;
+use Doctrine\ORM\Mapping\Table;
 
-
-/**
- * Class Member
- * @package App\Entity
- *
- * @ORM\Table(name="d_member")
- * @ORM\InheritanceType("SINGLE_TABLE")
- */
+#[Entity]
+#[Table(name: "d_member")]
+#[InheritanceType(value: "SINGLE_TABLE")]
 class Member
 {
-    /**
-     * @var int
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\Column(name="id", type="integer", options={"unsigned":true})
-     */
-    private $id;
+    #[Id]
+    #[GeneratedValue(strategy: "IDENTITY")]
+    #[Column(name: "id", type: "integer", options: ["unsigned" => true])]
+    private int $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name01", type="string", length="255")
-     */
-    private $name01;
+    #[Column(name: "name01", type: "string", length: 255)]
+    private string $name01;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name02", type="string", length="255")
-     */
-    private $name02;
+    #[Column(name: "name02", type: "string", length: 255)]
+    private string $name02;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="kana01", type="string", length="255")
-     */
-    private $kana01;
+    #[Column(name: "kana01", type: "string", length: 255)]
+    private string $kana01;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="kana02", type="string", length="255")
-     */
-    private $kana02;
+    #[Column(name: "kana02", type: "string", length: 255)]
+    private string $kana02;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="postal_code", type="string", length=8, nullable=true)
-     */
-    private $postal_code;
+    #[Column(name: "postal_code", type: "string", length: 8, nullable: true)]
+    private string $postal_code;
 
-    /** * @var string|null
-     *
-     * @ORM\Column(name="address01", type="string", length=255, nullable=true)
-     */
-    private $address01;
+    #[Column(name: "address01", type: "string", length: 255, nullable: true)]
+    private string $address01;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="address02", type="string", length=255, nullable=true)
-     */
-    private $address02;
+    #[Column(name: "address02", type: "string", length: 255, nullable: true)]
+    private string $address02;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="email", type="string", length=255, nullable=true)
-     */
-    private $email;
+    #[Column(name: "email", type: "string", length: 255, nullable: true)]
+    private string $email;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="phone_number", type="string", length=14, nullable=true)
-     */
-    private $phone_number;
+    #[Column(name: "phone_number", type: "string", length: 14, nullable: true)]
+    private string $phone_number;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="closest_station", type="string", length=255, nullable=true)
-     */
-    private $closest_station;
+    #[Column(name: "closest_station", type: "string", length: 20, nullable: true)]
+    private string $closest_station;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="note", type="string", length="4000", nullable=true)
-     */
-    private $note;
+    #[Column(name: "note", type: "string", length: 4000, nullable: true)]
+    private string $note;
 
-    /**
-     * @var DateTime
-     *
-     * @ORM\Column(name="create_date", type="datetimetz")
-     */
-    private $create_date;
+    #[Column(name: "create_date", type: "datetimetz")]
+    private DateTime $create_date;
 
-    /**
-     * @var DateTime
-     *
-     * @ORM\Column(name="update_date", type="datetimetz")
-     */
-    private $update_date;
+    #[Column(name: "create_date", type: "datetimetz")]
+    private DateTime $update_date;
 
     /**
      * @return int
@@ -122,6 +67,14 @@ class Member
     public function getId(): int
     {
         return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     /**
@@ -189,113 +142,113 @@ class Member
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getPostalCode(): ?string
+    public function getPostalCode(): string
     {
         return $this->postal_code;
     }
 
     /**
-     * @param string|null $postal_code
+     * @param string $postal_code
      */
-    public function setPostalCode(?string $postal_code): void
+    public function setPostalCode(string $postal_code): void
     {
         $this->postal_code = $postal_code;
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getAddress01(): ?string
+    public function getAddress01(): string
     {
         return $this->address01;
     }
 
     /**
-     * @param string|null $address01
+     * @param string $address01
      */
-    public function setAddress01(?string $address01): void
+    public function setAddress01(string $address01): void
     {
         $this->address01 = $address01;
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getAddress02(): ?string
+    public function getAddress02(): string
     {
         return $this->address02;
     }
 
     /**
-     * @param string|null $address02
+     * @param string $address02
      */
-    public function setAddress02(?string $address02): void
+    public function setAddress02(string $address02): void
     {
         $this->address02 = $address02;
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getEmail(): ?string
+    public function getEmail(): string
     {
         return $this->email;
     }
 
     /**
-     * @param string|null $email
+     * @param string $email
      */
-    public function setEmail(?string $email): void
+    public function setEmail(string $email): void
     {
         $this->email = $email;
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getPhoneNumber(): ?string
+    public function getPhoneNumber(): string
     {
         return $this->phone_number;
     }
 
     /**
-     * @param string|null $phone_number
+     * @param string $phone_number
      */
-    public function setPhoneNumber(?string $phone_number): void
+    public function setPhoneNumber(string $phone_number): void
     {
         $this->phone_number = $phone_number;
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getClosestStation(): ?string
+    public function getClosestStation(): string
     {
         return $this->closest_station;
     }
 
     /**
-     * @param string|null $closest_station
+     * @param string $closest_station
      */
-    public function setClosestStation(?string $closest_station): void
+    public function setClosestStation(string $closest_station): void
     {
         $this->closest_station = $closest_station;
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getNote(): ?string
+    public function getNote(): string
     {
         return $this->note;
     }
 
     /**
-     * @param string|null $note
+     * @param string $note
      */
-    public function setNote(?string $note): void
+    public function setNote(string $note): void
     {
         $this->note = $note;
     }
@@ -331,5 +284,4 @@ class Member
     {
         $this->update_date = $update_date;
     }
-
 }

@@ -5,36 +5,29 @@ namespace App\Entity;
 
 
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\InheritanceType;
+use Doctrine\ORM\Mapping\OneToMany;
+use Doctrine\ORM\Mapping\Table;
 
-/**
- * Class Skill
- * @package App\Entity
- *
- * @ORM\Table(name="d_skill")
- * @ORM\InheritanceType("SINGLE_TABLE")
- */
+#[Entity]
+#[Table(name: "d_skill")]
+#[InheritanceType(value: "SINGLE_TABLE")]
 class Skill extends AbstractEntity
 {
-    /**
-     * @var integer
-     * @ORM\Id
-     * @ORM\Column(name="id", type="integer", options={"unsigned":true})
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
+    #[Id]
+    #[Column(name: "id", type: "integer", options: ["unsigned" => true])]
+    #[GeneratedValue(strategy: "IDENTITY")]
+    private int $id;
 
-    /**
-     * @var string
-     * @ORM\Column(name="name", type="string", length=255)
-     */
-    private $name;
+    #[Column(name: "name", type: "string", length: 255)]
+    private string $name;
 
-    /**
-     * @var Collection
-     * @ORM\OneToMany(targetEntity="Entity\JoinSkills" mappedBy="skill", cascade={"persist", "remove"})
-     */
-    private $JoinSkills;
+    #[OneToMany(mappedBy: "string", targetEntity: "JoinSkills", cascade: ["persist", "remove"])]
+    private Collection $JoinSkills;
 
     /**
      * @return int

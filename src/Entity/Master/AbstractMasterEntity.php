@@ -4,7 +4,8 @@
 namespace App\Entity\Master;
 
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Id;
 
 /**
  * Class AbstractMasterEntity
@@ -12,20 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class AbstractMasterEntity
 {
-    /**
-     * @var int
-     *
-     * @ORM\Id
-     * @ORM\Column(name="id", type="smallint", options={"unsigned":true})
-     */
-    protected $id;
+    #[Id]
+    #[Column(name: "id", type: "smallint", options: ["unsigned" => true])]
+    protected int $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
-     */
-    protected $name;
+    #[Column(name: "name", type: "string", length: 255)]
+    protected string $name;
 
     /**
      * @return int

@@ -6,60 +6,41 @@ namespace App\Entity;
 
 use DateTime;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\InheritanceType;
+use Doctrine\ORM\Mapping\OneToMany;
+use Doctrine\ORM\Mapping\Table;
 
-/**
- * Class Join
- * @package App\Entity
- *
- * @ORM\Table(name="d_join")
- * @ORM\InheritanceType("SINGLE_TABLE")
- */
+#[Entity]
+#[Table(name: "d_join")]
+#[InheritanceType(value: "SINGLE_TABLE")]
 class Join extends AbstractEntity
 {
-    /**
-     * @var integer
-     * @ORM\Id
-     * @ORM\Column(name="id", type="integer", options={"unsigned":true})
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
+    #[Id]
+    #[Column(name: "id", type: "integer", options: ["unsigned" => true])]
+    #[GeneratedValue(strategy: "IDENTITY")]
+    private int $id;
 
-    /**
-     * @var string
-     * @ORM\Column(name="title", type="string", length=255)
-     */
-    private $title;
+    #[Column(name: "title", type: "string", length: 255)]
+    private string $title;
 
-    /**
-     * @var string
-     * @ORM\Column(name="position", type="string", length=255)
-     */
-    private $position;
+    #[Column(name: "position", type: "string", length: 255)]
+    private string $position;
 
-    /**
-     * @var string
-     * @ORM\Column(name="project_detail", type="string", length=4000)
-     */
-    private $project_detail;
+    #[Column(name: "project_detail", type: "string", length: 4000)]
+    private string $project_detail;
 
-    /**
-     * @var DateTime
-     * @ORM\Column(name="start_date", type="datetimetz")
-     */
-    private $start_date;
+    #[Column(name: "start_date", type: "datetimetz")]
+    private DateTime $start_date;
 
-    /**
-     * @var DateTime
-     * @ORM\Column(name="end_date", type="datetimetz")
-     */
-    private $end_date;
+    #[Column(name: "end_date", type: "datetimetz")]
+    private Datetime $end_date;
 
-    /**
-     * @var Collection
-     * @ORM\OneToMany(targetEntity="Entity\JoinSkills" mappedBy="join", cascade={"persist", "remove"})
-     */
-    private $JoinSkills;
+    #[OneToMany(mappedBy: "join", targetEntity: "JoinSkills", cascade: ["persist", "remove"])]
+    private Collection $JoinSkills;
 
     /**
      * @return int

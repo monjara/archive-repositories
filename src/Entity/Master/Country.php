@@ -4,15 +4,13 @@
 namespace App\Entity\Master;
 
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\InheritanceType;
+use Doctrine\ORM\Mapping\Table;
 
-/**
- * Class Country
- * @package App\Entity\Master
- *
- * @ORM\Table(name="m_country")
- * @ORM\InheritanceType("SINGLE_TABLE")
- */
+#[Entity]
+#[Table(name: "m_country")]
+#[InheritanceType(value: "SINGLE_TABLE")]
 class Country extends AbstractMasterEntity
 {
 
