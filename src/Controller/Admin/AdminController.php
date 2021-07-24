@@ -15,8 +15,15 @@ class AdminController
 {
 
     /**
+     * @Route("/%admin_route%/login", name="admin_login")
+     */
+    public function login()
+    {
+
+    }
+
+    /**
      * @Route("/%admin_route%/", name="admin_top")
-     * @Template("base.html.twig")
      */
     public function index()
     {
