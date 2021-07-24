@@ -4,15 +4,13 @@
 namespace App\Entity\Master;
 
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\InheritanceType;
+use Doctrine\ORM\Mapping\Table;
 
-/**
- * Class Sex
- * @package App\Entity\Master
- *
- * @ORM\Table(name="m_sex")
- * @ORM\InheritanceType("SINGLE_TABLE")
- */
+#[Entity]
+#[Table(name: "m_sex")]
+#[InheritanceType(value: "SINGLE_TABLE")]
 class Sex extends AbstractMasterEntity
 {
 

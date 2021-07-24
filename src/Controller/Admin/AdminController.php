@@ -14,17 +14,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController
 {
 
-    /**
-     * @Route("/%admin_route%/login", name="admin_login")
-     */
+    #[Route(path: '/%admin_route%/login', name: 'admin_login')]
     public function login()
     {
 
     }
 
-    /**
-     * @Route("/%admin_route%/", name="admin_top")
-     */
+    #[Route(path: '/%admin_route%/', name: 'admin')]
     public function index()
     {
 

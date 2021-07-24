@@ -5,116 +5,61 @@ namespace App\Entity;
 
 
 use DateTime;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\InheritanceType;
+use Doctrine\ORM\Mapping\Table;
 
-
-/**
- * Class Member
- * @package App\Entity
- *
- * @ORM\Table(name="d_member")
- * @ORM\InheritanceType("SINGLE_TABLE")
- */
+#[Entity]
+#[Table(name: "d_member")]
+#[InheritanceType(value: "SINGLE_TABLE")]
 class Member
 {
-    /**
-     * @var int
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\Column(name="id", type="integer", options={"unsigned":true})
-     */
-    private $id;
+    #[Id]
+    #[GeneratedValue(strategy: "IDENTITY")]
+    #[Column(name: "id", type: "integer", options: ["unsigned" => true])]
+    private int $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name01", type="string", length="255")
-     */
-    private $name01;
+    #[Column(name: "name01", type: "string", length: 255)]
+    private string $name01;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name02", type="string", length="255")
-     */
-    private $name02;
+    #[Column(name: "name02", type: "string", length: 255)]
+    private string $name02;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="kana01", type="string", length="255")
-     */
-    private $kana01;
+    #[Column(name: "kana01", type: "string", length: 255)]
+    private string $kana01;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="kana02", type="string", length="255")
-     */
-    private $kana02;
+    #[Column(name: "kana02", type: "string", length: 255)]
+    private string $kana02;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="postal_code", type="string", length=8, nullable=true)
-     */
-    private $postal_code;
+    #[Column(name: "postal_code", type: "string", length: 8, nullable: true)]
+    private string|null $postal_code;
 
-    /** * @var string|null
-     *
-     * @ORM\Column(name="address01", type="string", length=255, nullable=true)
-     */
-    private $address01;
+    #[Column(name: "address01", type: "string", length: 255, nullable: true)]
+    private string|null $address01;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="address02", type="string", length=255, nullable=true)
-     */
-    private $address02;
+    #[Column(name: "address02", type: "string", length: 255, nullable: true)]
+    private string|null $address02;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="email", type="string", length=255, nullable=true)
-     */
-    private $email;
+    #[Column(name: "email", type: "string", length: 255, nullable: true)]
+    private string|null $email;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="phone_number", type="string", length=14, nullable=true)
-     */
-    private $phone_number;
+    #[Column(name: "phone_number", type: "string", length: 14, nullable: true)]
+    private string|null $phone_number;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="closest_station", type="string", length=255, nullable=true)
-     */
-    private $closest_station;
+    #[Column(name: "closest_station", type: "string", length: 20, nullable: true)]
+    private string|null $closest_station;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="note", type="string", length="4000", nullable=true)
-     */
-    private $note;
+    #[Column(name: "note", type: "string", length: 4000, nullable: true)]
+    private string|null $note;
 
-    /**
-     * @var DateTime
-     *
-     * @ORM\Column(name="create_date", type="datetimetz")
-     */
-    private $create_date;
+    #[Column(name: "create_date", type: "datetimetz")]
+    private DateTime $create_date;
 
-    /**
-     * @var DateTime
-     *
-     * @ORM\Column(name="update_date", type="datetimetz")
-     */
-    private $update_date;
+    #[Column(name: "create_date", type: "datetimetz")]
+    private DateTime $update_date;
 
     /**
      * @return int
@@ -122,6 +67,14 @@ class Member
     public function getId(): int
     {
         return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     /**
@@ -331,5 +284,4 @@ class Member
     {
         $this->update_date = $update_date;
     }
-
 }

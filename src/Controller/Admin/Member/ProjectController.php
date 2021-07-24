@@ -12,9 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ProjectController
 {
-    /**
-     * @Route("/%admin_route%/project", name="admin_project")
-     */
+    #[Route(path: '/%admin_route%/project', name: 'admin_project')]
     public function index()
     {
 

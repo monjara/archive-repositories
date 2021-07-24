@@ -4,50 +4,37 @@
 namespace App\Entity;
 
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\InheritanceType;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\Table;
 
-/**
- * Class JoinSkill
- * @package App\Entity
- *
- * @ORM\Table(name="d_join_skill")
- * @ORM\InheritanceType("SINGLE_TABLE")
- */
+#[Entity]
+#[Table(name: "d_join_skill")]
+#[InheritanceType("SINGLE_TABLE")]
 class JoinSkill extends AbstractEntity
 {
-    /**
-     * @var integer
-     * @ORM\Id
-     * @ORM\Column(name="join_id", type="integer", options={"unsigned":true})
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $join_id;
+    #[Id]
+    #[Column(name: "join_id", type: "integer", options: ["unsigned" => true])]
+    #[GeneratedValue(strategy: "NONE")]
+    private int $join_id;
 
-    /**
-     * @var integer
-     * @ORM\Id
-     * @ORM\Column(name="skill_id", type="integer", options={"unsigned":true})
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $skill_id;
+    #[Id]
+    #[Column(name: "skill_id", type: "integer", options: ["unsigned" => true])]
+    #[GeneratedValue(strategy: "NONE")]
+    private int $skill_id;
 
-    /**
-     * @var Join
-     * @ORM\ManyToOne(targetEntity="Entity\Join", inversedBy="JoinSkills")
-     * @ORM\JoinColumns({
-     *     @ORM\JoinColumn(name="join_id", referencedColumnName="id")
-     * })
-     */
-    private $Join;
+    #[ManyToOne(targetEntity: "Join", inversedBy: "JoinSkills")]
+    #[JoinColumn(name: "join_id", referencedColumnName: "id")]
+    private Join $Join;
 
-    /**
-     * @var Skill
-     * @ORM\ManyToOne(targetEntity="Entity\Skill", inversedBy="JoinSkills")
-     * @ORM\JoinColumns({
-     *     @ORM\JoinColumn(name="skill_id", referencedColumnName="id")
-     * })
-     */
-    private $Skill;
+    #[ManyToOne(targetEntity: "Skill", inversedBy: "JoinSkills")]
+    #[JoinColumn(name: "skill_id", referencedColumnName: "id")]
+    private Skill $Skill;
 
     /**
      * @return int
