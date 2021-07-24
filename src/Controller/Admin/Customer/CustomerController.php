@@ -12,9 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CustomerController
 {
-    /**
-     * @Route("/%admin_route%/customer", name="admin_customer")
-     */
+    #[Route(path: '/%admin_route%/customer', name: 'admin_customer')]
     public function index()
     {
 

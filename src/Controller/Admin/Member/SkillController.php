@@ -12,9 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class SkillController
 {
-    /**
-     * @Route("/%admin_route%/skill", name="admin_skill")
-     */
+    #[Route(path: '/%admin_route%/skill', name: 'admin_skill')]
     public function index()
     {
 

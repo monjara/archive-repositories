@@ -12,9 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class MemberController
 {
-    /**
-     * @Route("/%admin_route%/member", name="admin_member")
-     */
+    #[Route(path: '/%admin_route%/member', name: 'admin_member')]
     public function index()
     {
 
