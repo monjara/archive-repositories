@@ -35,25 +35,25 @@ class Member
     private string $kana02;
 
     #[Column(name: "postal_code", type: "string", length: 8, nullable: true)]
-    private string $postal_code;
+    private string|null $postal_code;
 
     #[Column(name: "address01", type: "string", length: 255, nullable: true)]
-    private string $address01;
+    private string|null $address01;
 
     #[Column(name: "address02", type: "string", length: 255, nullable: true)]
-    private string $address02;
+    private string|null $address02;
 
     #[Column(name: "email", type: "string", length: 255, nullable: true)]
-    private string $email;
+    private string|null $email;
 
     #[Column(name: "phone_number", type: "string", length: 14, nullable: true)]
-    private string $phone_number;
+    private string|null $phone_number;
 
     #[Column(name: "closest_station", type: "string", length: 20, nullable: true)]
-    private string $closest_station;
+    private string|null $closest_station;
 
     #[Column(name: "note", type: "string", length: 4000, nullable: true)]
-    private string $note;
+    private string|null $note;
 
     #[Column(name: "create_date", type: "datetimetz")]
     private DateTime $create_date;
@@ -142,113 +142,113 @@ class Member
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPostalCode(): string
+    public function getPostalCode(): ?string
     {
         return $this->postal_code;
     }
 
     /**
-     * @param string $postal_code
+     * @param string|null $postal_code
      */
-    public function setPostalCode(string $postal_code): void
+    public function setPostalCode(?string $postal_code): void
     {
         $this->postal_code = $postal_code;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getAddress01(): string
+    public function getAddress01(): ?string
     {
         return $this->address01;
     }
 
     /**
-     * @param string $address01
+     * @param string|null $address01
      */
-    public function setAddress01(string $address01): void
+    public function setAddress01(?string $address01): void
     {
         $this->address01 = $address01;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getAddress02(): string
+    public function getAddress02(): ?string
     {
         return $this->address02;
     }
 
     /**
-     * @param string $address02
+     * @param string|null $address02
      */
-    public function setAddress02(string $address02): void
+    public function setAddress02(?string $address02): void
     {
         $this->address02 = $address02;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
     /**
-     * @param string $email
+     * @param string|null $email
      */
-    public function setEmail(string $email): void
+    public function setEmail(?string $email): void
     {
         $this->email = $email;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPhoneNumber(): string
+    public function getPhoneNumber(): ?string
     {
         return $this->phone_number;
     }
 
     /**
-     * @param string $phone_number
+     * @param string|null $phone_number
      */
-    public function setPhoneNumber(string $phone_number): void
+    public function setPhoneNumber(?string $phone_number): void
     {
         $this->phone_number = $phone_number;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getClosestStation(): string
+    public function getClosestStation(): ?string
     {
         return $this->closest_station;
     }
 
     /**
-     * @param string $closest_station
+     * @param string|null $closest_station
      */
-    public function setClosestStation(string $closest_station): void
+    public function setClosestStation(?string $closest_station): void
     {
         $this->closest_station = $closest_station;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getNote(): string
+    public function getNote(): ?string
     {
         return $this->note;
     }
 
     /**
-     * @param string $note
+     * @param string|null $note
      */
-    public function setNote(string $note): void
+    public function setNote(?string $note): void
     {
         $this->note = $note;
     }
