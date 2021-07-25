@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping\Id;
  * Class AbstractMasterEntity
  * @package App\Entity\Master
  */
-class AbstractMasterEntity
+abstract class AbstractMasterEntity
 {
     #[Id]
     #[Column(name: "id", type: "smallint", options: ["unsigned" => true])]
