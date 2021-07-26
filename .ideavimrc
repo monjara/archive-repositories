@@ -28,3 +28,4 @@ inoremap " ""<LEFT>
 let mapleader = " "
 set clipboard-=ideaput
 set clipboard+=unnamed
+set ideajoin
