@@ -143,4 +143,8 @@
     state: stareted
     enabled: yes
 
+- name: install redis
+  yum:
+    name: redis
+    state: present
 
