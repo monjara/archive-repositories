@@ -9,16 +9,6 @@
     name: "http://rpms.famillecollet.com/enterprise/remi-release-7.rpm"
     state: present
 
-- name: install pygpgme
-  yum:
-    name: pygpgme
-    state: present
-
-- name: install yum-utils
-  yum:
-    name: yum-utils
-    state: present
-
 - name: install system-dependencies
   yum: 
     name: "{{ packages }}"
@@ -30,6 +20,16 @@
       - nice
       - sed
       - tar
+
+- name: install pygpgme
+  yum:
+    name: pygpgme
+    state: present
+
+- name: install yum-utils
+  yum:
+    name: yum-utils
+    state: present
 
 - name: install httpd
   yum:
