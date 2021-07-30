@@ -1,0 +1,18 @@
+---
+- name: timedatactl set timezone
+  timezone:
+    name: Asia/Tokyo
+
+- name: disable SELinux
+  selinux:
+    state: disabled
+
+- name: deploy fastestmirror.conf.j2
+  template:
+    src: templates/fastestmirror.conf.j2
+    dest: /etc/yum/pluginconf.d/fastestmirror.conf
+    owner: root
+    group: root
+    mode: '644'
+    backup: yes
+
