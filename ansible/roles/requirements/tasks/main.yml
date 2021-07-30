@@ -1,7 +1,23 @@
 ---
+- name: install epel-release
+  yum:
+    name: epel-release
+    state: present
+
 - name: install remi-release-7.rpm
   yum:
     name: "http://rpms.famillecollet.com/enterprise/remi-release-7.rpm"
+    state: present
+
+- name: install pygpgme
+  yum:
+    name: pygpgme
+    state: present
+
+- name: install yum-utils
+  yum:
+    name: yum-utils
+    state: present
 
 - name: install system-dependencies
   yum: 
@@ -36,8 +52,21 @@
 - name: install Elasticsearch
   yum:
     name: elasticsearch
-    state: present
     enablerepo: elasticsearch
+
+- name: deploy varnishcache_varnish65.repo.j2
+  template:
+    src: templates/varnishcache_varnish65.repo.j2
+    dest: /etc/yum.repos.d/varnishcache_varnish5.repo
+    owner: root
+    group: root
+    mode: '644'
+  notify:
+    - import Varnish GPG key
+
+- name: install Varnish
+  yum:
+    name: varnish
 
 - name: systemctl start httpd
   service:
