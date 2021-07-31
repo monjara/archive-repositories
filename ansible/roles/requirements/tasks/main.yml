@@ -17,7 +17,6 @@
     packages:
       - gzip
       - lsof
-      #      - nice
       - sed
       - tar
 
