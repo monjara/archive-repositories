@@ -35,6 +35,23 @@
     name: httpd
     state: present
 
+- name: systemctl start httpd
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+
+- name: deploy httpd.conf.j2
+  template:
+    src: templates/httpd.conf.j2
+    dest: /etc/httpd/conf/httpd.conf
+    owner: root
+    group: root
+    mode: '644'
+    backup: yes
+  notify:
+    - restart httpd
+
 - name: import Elasticsearch GPG key
   rpm_key:
     state: present
@@ -166,12 +183,6 @@
   yum:
     name: mysql-server
     state: present
-
-- name: systemctl start httpd
-  service:
-    name: httpd
-    state: started
-    enabled: yes
 
 - name: systemctl start mysql
   service:
