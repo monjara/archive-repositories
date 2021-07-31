@@ -1,4 +1,0 @@
----
-- name: import Varnish GPG key
-  command:
-    cmd: yum -q makecache -y --disablerepo='*' --enablerepo='varnishcache_varnish65'
