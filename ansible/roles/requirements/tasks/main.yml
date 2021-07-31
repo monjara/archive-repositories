@@ -72,11 +72,10 @@
   yum:
     name: varnish
 
-- name: systemctl start httpd
-  service:
-    name: httpd
-    state: started
-    enabled: yes
+- name: install redis
+  yum:
+    name: redis
+    state: present
 
 - name: install php, php-extensions
   yum:
@@ -105,6 +104,32 @@
       - php-xsl
       - php-xdebug
       - php-zip
+
+- name: deploy rabbitmq.repo.j2
+  template:
+    src: templates/rabbitmq.repo.j2
+    dest: /etc/yum.repos.d/rabbitmq.repo
+    owner: root
+    group: root
+    mode: '644'
+
+- name: install RabbitMQ dependencies
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - socat
+      - logrotate
+
+- name: install Erlang and RabbitMQ
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - erlang
+      - rabbitmq-server
 
 - name: check composer
   stat:
@@ -142,14 +167,15 @@
     name: mysql-server
     state: present
 
+- name: systemctl start httpd
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+
 - name: systemctl start mysql
   service:
     name: mysqld
     state: started
     enabled: yes
-
-- name: install redis
-  yum:
-    name: redis
-    state: present
 
