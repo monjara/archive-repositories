@@ -17,7 +17,7 @@
     packages:
       - gzip
       - lsof
-      - nice
+      #      - nice
       - sed
       - tar
 
@@ -61,8 +61,13 @@
     owner: root
     group: root
     mode: '644'
-  notify:
-    - import Varnish GPG key
+  register: varnishcache_varnish65_repo_deployment
+
+- name: import Varnish GPG key
+  command:
+    cmd: yum -q makecache -y --disablerepo='*' --enablerepo='varnishcache_varnish65'
+    warn: yes
+  when: varnishcache_varnish65_repo_deployment.changed
 
 - name: install Varnish
   yum:
@@ -71,7 +76,7 @@
 - name: systemctl start httpd
   service:
     name: httpd
-    state: stareted
+    state: started
     enabled: yes
 
 - name: install php, php-extensions
@@ -128,19 +133,20 @@
     mode: a+x
     state: file
 
-- name: install mysql
+- name: install mysql repository
   yum:
-    name: "{{ packages }}"
+    name: https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
     state: present
-  vars:
-    packages:
-      - mysql80-community-release-el7-3.noarch.rpm
-      - mysql-community-server
+
+- name: install mysql 
+  yum:
+    name: mysql-server
+    state: present
 
 - name: systemctl start mysql
   service:
     name: mysqld
-    state: stareted
+    state: started
     enabled: yes
 
 - name: install redis
