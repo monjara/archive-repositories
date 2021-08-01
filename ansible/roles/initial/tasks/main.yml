@@ -15,4 +15,22 @@
     group: root
     mode: '644'
     backup: yes
+  register: fastestmirror
+
+- name: Upgrade all packages, excluding kernel
+  yum:
+    name: '*'
+    state: latest
+    exclude: kernel*
+  when: fastestmirror.changed
+
+- name: install bash-completion
+  yum:
+    name: bash-completion
+    state: present
+
+- name: install vim
+  yum:
+    name: vim
+    state: present
 

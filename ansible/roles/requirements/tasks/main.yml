@@ -210,12 +210,20 @@
 - name: deploy my.cnf.j2
   template:
     src: templates/my.cnf.j2
-    dest: /etc/my.cnf.j2
+    dest: /etc/my.cnf
     owner: root
     group: root
     mode: '644'
     backup: yes
   register: my_cnf_deployment
+
+- name: deploy root.my.cnf.j2
+  template:
+    src: templates/root.my.cnf.j2
+    dest: /root/.my.cnf
+    owner: root
+    group: root
+    mode: '644'
 
 - name: systemctl start mysql
   service:
@@ -229,23 +237,32 @@
   when: my_cnf_deployment.changed
 
 - name: update expired root user password
-  command: mysql --user root --password={{ root_password.stdout }} --connect-expired-password --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ mysql.root.password }}';"
+  command: "mysql --user root --password={{ root_password.stdout }} --connect-expired-password --execute=\"ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ mysql.root.password }}';\""
   when: my_cnf_deployment.changed
+
+- name: install MySQL-Python
+  yum: 
+    name: MySQL-python
+    state: present
 
 - name: create database
   mysql_db:
-    name: {{ mysql.database.name }}
-    login_user: {{ mysql.root.name }}
-    login_password: {{ mysql.root.password }}
+    name: "{{ mysql.database.name }}"
+    login_user: "{{ mysql.root.name }}"
+    login_password: "{{ mysql.root.password }}"
+    login_unix_socket: /var/lib/mysql/mysql.sock
     state: present
 
 - name: create mysql user
   mysql_user:
-    name: {{ mysql.login_user.name }}
-    password: {{ mysql.login_user.password }}
-    login_user: {{ mysql.root.name }}
-    login_password: {{ mysql.root.password }}
-    priv: "{{ mysql.database.neme }}.*:ALL,GRANT"
+    name: "{{ mysql.login_user.name }}"
+    password: "{{ mysql.login_user.password }}"
+    login_user: "{{ mysql.root.name }}"
+    login_password: "{{ mysql.root.password }}"
+    priv: "{{ mysql.database.name }}.*:ALL,GRANT"
     state: present
 
-
+- name: delete /root/.my.cnf
+  file:
+    name: /root/.my.cnf
+    state: absent
