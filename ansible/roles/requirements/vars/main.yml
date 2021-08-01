@@ -1,0 +1,12 @@
+---
+
+mysql:
+  database:
+    name: magento
+  root:
+    name: root
+    password: R00tpass
+  login_user:
+    name: magento
+    host: localhost
+    password: magento

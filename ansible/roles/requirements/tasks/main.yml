@@ -122,6 +122,24 @@
       - php-xdebug
       - php-zip
 
+- name: deploy php.ini.j2
+  template:
+    src: templates/php.ini.j2
+    dest: /etc/php.ini
+    owner: root
+    group: root
+    mode: '644'
+    backup: yes
+
+- name: deploy 10-opcache.ini.j2
+  template:
+    src: templates/10-opcache.ini.j2
+    dest: /etc/php.d/10-opcache.ini
+    owner: root
+    group: root
+    mode: '644'
+    backup: yes
+
 - name: deploy rabbitmq.repo.j2
   template:
     src: templates/rabbitmq.repo.j2
@@ -174,6 +192,11 @@
     mode: a+x
     state: file
 
+- name: remove mariadb
+  yum:
+    name: mariadb-libs
+    state: removed
+
 - name: install mysql repository
   yum:
     name: https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
@@ -184,9 +207,45 @@
     name: mysql-server
     state: present
 
+- name: deploy my.cnf.j2
+  template:
+    src: templates/my.cnf.j2
+    dest: /etc/my.cnf.j2
+    owner: root
+    group: root
+    mode: '644'
+    backup: yes
+  register: my_cnf_deployment
+
 - name: systemctl start mysql
   service:
     name: mysqld
     state: started
     enabled: yes
+
+- name: get root password
+  shell: "grep 'A temporary password is generated for root@localhost' /var/log/mysqld.log | awk -F ' ' '{print $(NF)}'"
+  register: root_password
+  when: my_cnf_deployment.changed
+
+- name: update expired root user password
+  command: mysql --user root --password={{ root_password.stdout }} --connect-expired-password --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ mysql.root.password }}';"
+  when: my_cnf_deployment.changed
+
+- name: create database
+  mysql_db:
+    name: {{ mysql.database.name }}
+    login_user: {{ mysql.root.name }}
+    login_password: {{ mysql.root.password }}
+    state: present
+
+- name: create mysql user
+  mysql_user:
+    name: {{ mysql.login_user.name }}
+    password: {{ mysql.login_user.password }}
+    login_user: {{ mysql.root.name }}
+    login_password: {{ mysql.root.password }}
+    priv: "{{ mysql.database.neme }}.*:ALL,GRANT"
+    state: present
+
 
