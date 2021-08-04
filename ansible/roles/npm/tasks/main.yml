@@ -20,7 +20,6 @@
     name: n
     global: yes
     state: present
-  when: node.changed
 
 - name: n stable
   command:
@@ -32,4 +31,10 @@
     name: "{{ packages }}"
     state: removed
   when: node.changed
+
+- name: npm install -g yarn
+  npm:
+    name: yarn
+    global: yes
+    state: present
 
