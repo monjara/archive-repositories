@@ -78,7 +78,7 @@
   file:
     path: /var/run/php
     state: directory
-    mode: '755'
+    mode: '660'
 
 - name: systemctl start php-fpm
   service:
