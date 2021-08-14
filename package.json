@@ -21,6 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "fix": "npm run -s format && npm run -s lint:fix",
     "lint": "npm run -s lint:style; npm run -s lint:es",
     "lint:fix": "npm run -s lint:style:fix && npm run -s lint:es:fix",
     "lint:es": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
