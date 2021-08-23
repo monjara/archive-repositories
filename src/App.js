@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Todo from "./components/Todo";
 import FilterButton from "./components/FilterButton";
 import Form from "./components/Form";
 
 const App = (props) => {
+  const [tasks, setTasks] = useState(props.tasks);
 
   const taskList = props.tasks.map(task => (
     <Todo
@@ -21,10 +22,15 @@ const App = (props) => {
     />
   ));
 
+  const addTask = (name) => {
+    const newTask = { id: "id", name: name, completed: false };
+    setTasks([...tasks, newTask]);
+  }
+
   return (
     <div className="todoapp stack-large">
       <h1>TodoMatic</h1>
-      <Form />
+      <Form addTask={addTask} />
       <div className="filters btn-group stack-exception">
         {filterButtonList}
       </div>
