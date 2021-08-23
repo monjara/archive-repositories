@@ -1,5 +1,7 @@
 import React from "react";
 import Todo from "./components/Todo";
+import FilterButton from "./components/FilterButton";
+import Form from "./components/Form";
 
 const App = (props) => {
 
@@ -12,54 +14,19 @@ const App = (props) => {
     />
   ));
 
+  const filterButtonList = props.filterButtons.map(filterButton => (
+    <FilterButton
+      taskOption={filterButton.taskOption}
+      ariaPressed={filterButton.ariaPressed}
+    />
+  ));
+
   return (
     <div className="todoapp stack-large">
       <h1>TodoMatic</h1>
-      <form>
-        <h2 className="label-wrapper">
-          <label htmlFor="new-todo-input" className="label__lg">What needs to be done?</label>
-        </h2>
-        <input
-          type="text"
-          id="new-todo-input"
-          className="input input__lg"
-          name="text"
-          autoComplete="off"
-        />
-        <button
-          type="submit"
-          className="btn btn__primary btn__lg"
-        >Add
-        </button>
-      </form>
+      <Form />
       <div className="filters btn-group stack-exception">
-        <button
-          type="button"
-          aria-pressed="false"
-          className="btn toggle-btn"
-        >
-          <span className="visually-hidden">Show </span>
-          <span>All</span>
-          <span className="visually-hidden"> tasks</span>
-        </button>
-        <button
-          type="button"
-          aria-pressed="false"
-          className="btn toggle-btn"
-        >
-          <span className="visually-hidden">Show </span>
-          <span>Active</span>
-          <span className="visually-hidden"> tasks</span>
-        </button>
-        <button
-          type="button"
-          aria-pressed="false"
-          className="btn toggle-btn"
-        >
-          <span className="visually-hidden">Show </span>
-          <span>Complete</span>
-          <span className="visually-hidden"> tasks</span>
-        </button>
+        {filterButtonList}
       </div>
       <h2 id="list-heading">
         3 tasks remaining

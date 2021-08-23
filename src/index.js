@@ -4,14 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const DATA = [
+const TASK_DATA = [
   { id: "todo-0", name: "Eat", completed: true },
   { id: "todo-1", name: "Sleep", completed: false },
   { id: "todo-2", name: "Repeat", completed: false }
 ];
 
+const BUTTON_DATA = [
+  { taskOption: "All" , ariaPressed: true },
+  { taskOption: "Active" , ariaPressed: true },
+  { taskOption: "Completed" , ariaPressed: true }
+];
+
 ReactDOM.render(
-  <App tasks={DATA}/>,
+  <App
+    tasks={TASK_DATA}
+    filterButtons={BUTTON_DATA}
+  />,
   document.getElementById('root')
 );
 
