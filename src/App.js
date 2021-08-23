@@ -1,6 +1,17 @@
 import React from "react";
+import Todo from "./components/Todo";
 
 const App = (props) => {
+
+  const taskList = props.tasks.map(task => (
+    <Todo
+      id={task.id}
+      name={task.name}
+      completed={task.completed}
+      key={task.id}
+    />
+  ));
+
   return (
     <div className="todoapp stack-large">
       <h1>TodoMatic</h1>
@@ -18,7 +29,8 @@ const App = (props) => {
         <button
           type="submit"
           className="btn btn__primary btn__lg"
-        >Add</button>
+        >Add
+        </button>
       </form>
       <div className="filters btn-group stack-exception">
         <button
@@ -57,57 +69,10 @@ const App = (props) => {
         role="list"
         aria-labelledby="list-heading"
       >
-        <li className="todo stack-small">
-          <div className="c-cb">
-            <input type="checkbox" id="todo-0" defaultChecked={true}/>
-            <label htmlFor="todo-0" className="todo-label">
-              Eat
-            </label>
-          </div>
-          <div className="btn-group">
-            <button type="button" className="btn">
-              Edit <span className="visually-hidden">Eat</span>
-            </button>
-            <button className="btn btn__danger">
-              Delete <span className="visually-hidden">Eat</span>
-            </button>
-          </div>
-        </li>
-        <li className="todo stack-small">
-          <div className="c-cb">
-            <input type="checkbox" id="todo-0" defaultChecked={true}/>
-            <label htmlFor="todo-0" className="todo-label">
-              Eat
-            </label>
-          </div>
-          <div className="btn-group">
-            <button type="button" className="btn">
-              Edit <span className="visually-hidden">Eat</span>
-            </button>
-            <button className="btn btn__danger">
-              Delete <span className="visually-hidden">Eat</span>
-            </button>
-          </div>
-        </li>
-        <li className="todo stack-small">
-          <div className="c-cb">
-            <input type="checkbox" id="todo-0" defaultChecked={true}/>
-            <label htmlFor="todo-0" className="todo-label">
-              Eat
-            </label>
-          </div>
-          <div className="btn-group">
-            <button type="button" className="btn">
-              Edit <span className="visually-hidden">Eat</span>
-            </button>
-            <button className="btn btn__danger">
-              Delete <span className="visually-hidden">Eat</span>
-            </button>
-          </div>
-        </li>
+        {taskList}
       </ul>
     </div>
-);
+  );
 }
 
 export default App;
