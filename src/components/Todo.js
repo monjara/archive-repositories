@@ -4,7 +4,7 @@ const Todo = (props) => {
   return (
     <li className="todo stack-small">
       <div className="c-cb">
-        <input type="checkbox" id={props.id} defaultChecked={props.completed}/>
+        <input type="checkbox" id={props.id} defaultChecked={props.completed}  onChange={() => props.toggleTaskCompleted(props.id)}/>
         <label htmlFor={props.id} className="todo-label">
           {props.name}
         </label>
