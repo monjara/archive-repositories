@@ -128,8 +128,8 @@ Plug 'HerringtonDarkholme/yats.vim'
 "*****************************************************************************
 
 "" Include user's extra bundle
-if filereadable(expand("~/.config/nvim/local.bundles.vim"))
-  source ~/.config/nvim/local.bundles.vim
+if filereadable(expand("~/.config/nvim/local_bundles.vim"))
+  source ~/.config/nvim/local_bundles.vim
 endif
 
 call plug#end()

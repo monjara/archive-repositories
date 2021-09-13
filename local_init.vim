@@ -23,6 +23,7 @@ inoremap [ []<LEFT>
 inoremap ( ()<LEFT>
 inoremap ' ''<LEFT>
 inoremap " ""<LEFT>
+let mapleader=' '
  
 if has("autocmd")
   filetype plugin on
