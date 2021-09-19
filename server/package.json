@@ -1,11 +1,11 @@
 {
-  "name": "rnrn",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/index.js"
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",
