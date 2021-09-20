@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 3001
 const ADMIN_URL = process.env.ADMIN_URL || 'admin'
 const app = express()
 
-app.use('/admin', admin)
+app.use(`/${ADMIN_URL}`, admin)
 
 app.get('/api', (req, res) => {
   res.json({message: "Hello from server!"})
