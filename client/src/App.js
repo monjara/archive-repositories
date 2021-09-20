@@ -4,7 +4,7 @@ const App = () => {
   const [data, setData] = useState(null)
 
   useEffect(() => {
-    fetch("/api")
+    fetch("/admin")
       .then((res) => res.json())
       .then((data) => setData(data.message))
   }, [])
