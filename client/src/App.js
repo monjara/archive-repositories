@@ -1,18 +1,13 @@
-import { useEffect, useState } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import { PublicIndex } from "./public/PublicIndex";
+import { AdminIndex } from "./admin/AdminIndex";
 
 const App = () => {
-  const [data, setData] = useState(null)
-
-  useEffect(() => {
-    fetch("/admin")
-      .then((res) => res.json())
-      .then((data) => setData(data.message))
-  }, [])
-
   return (
-    <div className="App">
-        <p>{!data ? "Loading..." : data}</p>
-    </div>
+    <BrowserRouter>
+      <Route exact path="/" component={PublicIndex}/>
+      <Route exact path="/admin" component={AdminIndex}/>
+    </BrowserRouter>
   );
 }
 
