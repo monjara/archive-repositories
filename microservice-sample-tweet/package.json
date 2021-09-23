@@ -1,0 +1,43 @@
+{
+  "name": "microservice-sample-tweet",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "git@github.com:monjara/microservice-sample-tweet.git",
+  "author": "monjara <yaginumee@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "NODE_ENV=development nodemon ./app.js",
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+    "test": "ava",
+    "watch": "ava --watch"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
+  "devDependencies": {
+    "ava": "^3.15.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "husky": "^7.0.2",
+    "mongodb-memory-server": "^7.3.6",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2",
+    "supertest": "^3.4.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongodb": "^4.1.1",
+    "mongoose": "^6.0.2",
+    "morgan": "^1.10.0"
+  }
+}
