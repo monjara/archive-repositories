@@ -1,0 +1,39 @@
+---
+- name: check n
+  stat:
+    name: /usr/bin/n
+  register: n
+
+- name: install nodejs npm temporarily
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - nodejs
+      - npm
+  when: !n.exists
+  register: node
+
+- name: npm install -g n
+  npm:
+    name: n
+    global: yes
+    state: present
+
+- name: n stable
+  command:
+    cmd: n stable
+  when: node.changed
+
+- name: remove tmp nodejs npm 
+  yum:
+    name: "{{ packages }}"
+    state: removed
+  when: node.changed
+
+- name: npm install -g yarn
+  npm:
+    name: yarn
+    global: yes
+    state: present

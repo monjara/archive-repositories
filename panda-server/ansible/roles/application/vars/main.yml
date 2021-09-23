@@ -1,0 +1,6 @@
+---
+
+project:
+  name: panda
+  dir: /vagrant/panda
+  link: /var/www/panda

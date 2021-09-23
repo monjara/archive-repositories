@@ -1,0 +1,13 @@
+[main]
+enabled={{ fastestmirror.conf.main.enabled }}
+verbose={{ fastestmirror.conf.main.verbose }}
+always_print_best_host = {{ fastestmirror.conf.main.always_print_best_host  }}
+socket_timeout={{ fastestmirror.conf.main.socket_timeout }}
+#  Relative paths are relative to the cachedir (and so works for users as well
+# as root).
+hostfilepath={{ fastestmirror.conf.main.hostfilepath }}
+maxhostfileage={{ fastestmirror.conf.main.maxhostfileage }}
+maxthreads={{ fastestmirror.conf.main.maxthreads }}
+#exclude=.gov, facebook
+include_only={{ fastestmirror.conf.main.include_only }}
+prefer={{ fastestmirror.conf.main.prefer }}

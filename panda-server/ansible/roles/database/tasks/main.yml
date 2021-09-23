@@ -1,0 +1,40 @@
+---
+
+- name: install pgsql repository package
+  yum:
+    name: "{{ db.ms.repository }}"
+
+- name: install postgresql packages
+  yum:
+    name:  "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - "{{ db.ms.package }}"
+      - python-psycopg2
+
+- name: setup database cluster
+  shell: "/usr/pgsql-{{ db.ms.version }}/bin/postgresql-{{ db.ms.version }}-setup initdb"
+  args:
+    creates: "/var/lib/pgsql/{{ db.ms.version }}/data/postgresql.conf"
+
+- name: systemctl start postgresql
+  service:
+    name: "postgresql-{{ db.ms.version }}"
+    state: started
+    enabled: yes
+
+    #- name: create a database user
+    #  postgresql_user:
+    #    db: "{{ db.database.name }}"
+    #    name: "{{ db.database.user.name }}"
+    #    password: "{{ db.database.user.password }}"
+    #    priv: "{{ db.database.user.priv }}"
+    #
+    #- name: create a new database
+    #  postgresql_db:
+    #    name: "{{ db.database.name }}"
+    #    login_user: "{{ db.database.user.name }}"
+    #    login_password: "{{ db.database.user.password }}"
+    #    encoding: "{{ db.database.encoding }}"
+

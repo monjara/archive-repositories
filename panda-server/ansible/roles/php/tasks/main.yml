@@ -1,0 +1,88 @@
+---
+- name: install epel-release
+  yum:
+    name: epel-release
+    state: present
+
+- name: install remi-release-7.rpm
+  yum:
+    name: "http://rpms.famillecollet.com/enterprise/remi-release-7.rpm"
+
+- name: install php, php-extensions
+  yum:
+    name: "{{ packages }}"
+    state: present
+    enablerepo: remi-php80
+  vars:
+    packages:
+      - php
+      - php-amqp
+      - php-apcu
+      - php-bcmath
+      - php-common
+      - php-curl
+      - php-fpm
+      - php-gd
+      - php-imagick
+      - php-intl
+      - php-json
+      - php-mbstring
+      - php-mysql
+      - php-opcache
+      - php-pdo
+      - php-pgsql
+      - php-posix
+      - php-redis
+      - php-shmop
+      - php-sodium
+      - php-xml
+      - php-xdebug
+      - php-zip
+
+- name: check composer
+  stat:
+    path: /usr/local/bin/composer
+  register: composer
+  changed_when: false
+
+- name: download composer installer (first time only)
+  get_url:
+    url: https://getcomposer.org/installer
+    dest: /tmp/installer
+  when: composer.stat.exists == false
+
+- name: install composer (first time only)
+  shell: cat /tmp/installer | php -- --install-dir=/usr/local/bin
+  when: composer.stat.exists == false
+
+- name: rename composer.phar to composer (first time only)
+  shell: mv /usr/local/bin/composer.phar /usr/local/bin/composer
+  when: composer.stat.exists == false
+
+- name: make composer executable (first time only)
+  file:
+    path: /usr/local/bin/composer
+    mode: a+x
+    state: file
+
+- name: deploy www.conf.j2
+  template:
+    src: templates/www.conf.j2
+    dest: /etc/php-fpm.d/www.conf
+    owner: root
+    group: root
+    mode: '644'
+    backup: yes
+
+- name: create /var/run/php directory if it does not exitst
+  file:
+    path: /var/run/php
+    state: directory
+    mode: '660'
+
+- name: systemctl start php-fpm
+  service:
+    name: php-fpm
+    state: started
+    enabled: yes
+
