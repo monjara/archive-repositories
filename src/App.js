@@ -1,11 +1,19 @@
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+} from "react-router-dom";
+import IndexScreen from "./screens/IndexScreen";
+import AdminIndexScreen from "./screens/admin/AdminIndexScreen";
+
 const App = () => {
   return (
-    <div className="App">
-      <p>
-        Hello World
-      </p>
-    </div>
-  );
-}
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={IndexScreen} />
+        <Route path="/admin" component={AdminIndexScreen} />
+      </Switch>
+    </BrowserRouter>
+  );}
 
 export default App;
