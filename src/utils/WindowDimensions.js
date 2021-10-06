@@ -12,6 +12,7 @@ const WindowDimensions = () => {
     const onResize = () => {
       setWindowDimensions(getWindowDimensions());
       window.addEventListener('resize', onResize);
+      // eslint-disable-next-line no-unused-vars
       return () => window.removeEventListener('resize', onResize);
     }
   }, []);

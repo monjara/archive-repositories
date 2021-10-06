@@ -7,11 +7,12 @@ const AdminIndexScreen = () => {
   return (
     <Container fluid>
       <Row>
-        <Col xs={2}
-             style={{
-               height: height,
-               backgroundColor: "black",
-             }}
+        <Col
+          xs={2}
+          style={{
+            height: height,
+            backgroundColor: "black",
+          }}
         >
         </Col>
         <Col xs={10}>
