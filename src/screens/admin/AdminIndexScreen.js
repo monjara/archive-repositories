@@ -1,25 +1,20 @@
-import { Col, Container, Nav, Row } from "react-bootstrap";
-import '../../assets/css/Sidebar.css'
-import WindowDimensions from "../../utils/WindowDimensions";
+import { Col, Container, Row } from "react-bootstrap";
+import Sidebar from "../../components/Sidebar";
 
 const AdminIndexScreen = () => {
-  const { width, height } = WindowDimensions();
   return (
-    <Container fluid>
-      <Row>
-        <Col
-          xs={2}
-          style={{
-            height: height,
-            backgroundColor: "black",
-          }}
-        >
-        </Col>
-        <Col xs={10}>
-          test
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <Container fluid>
+        <Row>
+          <Col xs={2} id="sidebar-wrapper">
+            <Sidebar/>
+          </Col>
+          <Col xs={10} id="page-content-wrapper">
+            test
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 }
 
