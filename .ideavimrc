@@ -14,10 +14,22 @@ set showmatch
 set laststatus=2
 set wildmode=list:longest
 set ignorecase
+set clipboard-=ideaput
+set clipboard+=unnamed
+set ideajoin
 set easymotion
+
+syntax enable
+
+let mapleader =" "
+
+" normal mode
 nnoremap j gj
 nnoremap k gk
-syntax enable
+nnoremap <leader>j :action GotoDeclaration<cr>
+nnoremap <leader>h :action Back<cr>
+
+" insert mode
 inoremap <silent> jj <ESC>
 inoremap { {}<LEFT>
 inoremap [ []<LEFT>
@@ -25,7 +37,3 @@ inoremap ( ()<LEFT>
 inoremap ' ''<LEFT>
 inoremap " ""<LEFT>
 
-let mapleader = " "
-set clipboard-=ideaput
-set clipboard+=unnamed
-set ideajoin
