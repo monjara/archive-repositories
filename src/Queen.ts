@@ -1,1 +1,1 @@
-class Queen {}
+class Queen extends Piece {}

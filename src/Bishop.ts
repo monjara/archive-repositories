@@ -1,1 +1,1 @@
-class Bishop {}
+class Bishop extends Piece {}

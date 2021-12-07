@@ -1,1 +1,1 @@
-class Rook {}
+class Rook extends Piece {}

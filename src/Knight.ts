@@ -1,1 +1,1 @@
-class Knight {}
+class Knight extends Piece {}

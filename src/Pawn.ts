@@ -1,1 +1,1 @@
-class Pawn {}
+class Pawn extends Piece {}

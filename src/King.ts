@@ -1,1 +1,1 @@
-class King {}
+class King extends Piece {}
