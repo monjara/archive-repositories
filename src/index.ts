@@ -1,12 +1,6 @@
-function area(radius: number): number | null {
-  if (radius < 0) {
-    return null;
-  }
-  return Math.PI * radius ** 2;
-}
+type Log = (message: string, userId?: string) => void;
 
-let r: number = 3;
-let a = area(r);
-if (a != null) {
-  console.info("result: ", a);
-}
+let log: Log = (message, userId = "asdf") => {
+  const time = new Date().toLocaleTimeString();
+  console.log(time, message, userId);
+};
