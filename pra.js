@@ -1,6 +1,12 @@
-const arr1 = [0, 1, 2, 3];
-const arr2 = arr1.map((val) => {
-  console.log("var: " + val);
-  return val * 10;
+function parseJSONAsync(json, callback) {
+  setTimeout(() => {
+    try {
+      callback(null, JSON.parse(json));
+    } catch (err) {
+      callback(err);
+    }
+  }, 1000);
+}
+parseJSONAsync("不正なJSON", (err, res) => {
+  console.log("result ", err, res);
 });
-console.log("finish: " + arr2);
