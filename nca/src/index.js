@@ -1,12 +1,15 @@
-const path = require("path");
-const express = require("express");
-const app = express();
+const path = require('path')
+const http = require('http')
 
-const port = process.env.PORT || 3000;
-const publicDirectory = path.join(__dirname, "../public");
+const express = require('express')
+const app = express()
+const server = http.createServer(app)
 
-app.use(express.static(publicDirectory));
+const port = process.env.PORT || 3000
+const publicDirectory = path.join(__dirname, '../public')
 
-app.listen(port, () => {
-  console.log(`Server listens on port ${port}`);
-});
+app.use(express.static(publicDirectory))
+
+server.listen(port, () => {
+  console.log(`Server listens on port ${port}`)
+})
