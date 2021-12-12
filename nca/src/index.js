@@ -15,9 +15,14 @@ app.use(express.static(publicDirectory))
 
 io.on('connection', (socket) => {
   socket.emit('message', 'welcome')
+  socket.broadcast.emit('message', 'new user joined')
 
   socket.on('sendMessage', (message) => {
     io.emit('message', message)
+  })
+
+  socket.on('disconnect', () => {
+    io.emit('message', 'a user has left')
   })
 })
 
