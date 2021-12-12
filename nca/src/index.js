@@ -2,6 +2,7 @@ const path = require('path')
 const http = require('http')
 const socketio = require('socket.io')
 const express = require('express')
+const { createSocket } = require('dgram')
 
 const app = express()
 const server = http.createServer(app)
@@ -12,14 +13,11 @@ const publicDirectory = path.join(__dirname, '../public')
 
 app.use(express.static(publicDirectory))
 
-let count = 0
 io.on('connection', (socket) => {
-  console.log('New socket connection')
-  socket.emit('countUpdated', count)
+  socket.emit('message', 'welcome')
 
-  socket.on('increment', () => {
-    count++
-    io.emit('countUpdated', count)
+  socket.on('sendMessage', (message) => {
+    io.emit('message', message)
   })
 })
 
