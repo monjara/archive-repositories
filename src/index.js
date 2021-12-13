@@ -1,8 +1,10 @@
 const events = require('events');
+const process = require('process');
 
 const createFizzBuzzEventEmitter = (until) => {
   const eventEmitter = new events.EventEmitter();
-  _emitFizzBuzz(eventEmitter, until);
+  // _emitFizzBuzz(eventEmitter, until);
+  process.nextTick(() => _emitFizzBuzz(eventEmitter, until));
   return eventEmitter;
 };
 
@@ -49,7 +51,7 @@ const endListener = (eventEmitter) => {
     .off('end', endListener);
 };
 
-createFizzBuzzEventEmitter(40)
+createFizzBuzzEventEmitter(0)
   .on('start', startListener)
   .on('Fizz', fizzListener)
   .on('Buzz', buzzListener)
