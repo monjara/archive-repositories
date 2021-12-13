@@ -1,7 +1,14 @@
-const events = require('events');
+'use strict';
+const http = require('http');
+const fibonacci = require('./fibonacci');
 
-try {
-  new events.EventEmitter().emit('error', new Error('エラー'));
-} catch (err) {
-  console.log('catch', err);
-}
+http
+  .createServer((req, res) => {
+    const n = Number(req.url.substr(1));
+    if (Number.isNaN(n)) {
+      return res.end();
+    }
+    const result = fibonacci(n);
+    return res.end(result.toString());
+  })
+  .listen(3000);
