@@ -1,14 +1,21 @@
-'use strict';
 const http = require('http');
-const fibonacci = require('./fibonacci');
 
-http
+const todos = [
+  { id: 1, title: 'ネーム', completed: false },
+  { id: 1, title: 'ネーム', completed: true },
+];
+
+const server = http
   .createServer((req, res) => {
-    const n = Number(req.url.substr(1));
-    if (Number.isNaN(n)) {
-      return res.end();
+    if (req.url === '/api/todos') {
+      if (req.method === 'GET') {
+        res.setHeader('Content-Type', 'application/json');
+        return res.end(JSON.stringify(todos));
+      }
+      res.statusCode = 405;
+    } else {
+      res.statusCode = 404;
     }
-    const result = fibonacci(n);
-    return res.end(result.toString());
+    res.end();
   })
   .listen(3000);
