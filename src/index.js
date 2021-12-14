@@ -1,21 +1,7 @@
-const http = require('http');
+'use strict';
+const express = require('express');
+const app = express();
 
-const todos = [
-  { id: 1, title: 'ネーム', completed: false },
-  { id: 1, title: 'ネーム', completed: true },
-];
+app.use('/api/todos', require('./routes/todos'));
 
-const server = http
-  .createServer((req, res) => {
-    if (req.url === '/api/todos') {
-      if (req.method === 'GET') {
-        res.setHeader('Content-Type', 'application/json');
-        return res.end(JSON.stringify(todos));
-      }
-      res.statusCode = 405;
-    } else {
-      res.statusCode = 404;
-    }
-    res.end();
-  })
-  .listen(3000);
+app.listen(3000);
