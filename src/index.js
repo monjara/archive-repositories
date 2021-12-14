@@ -8,7 +8,12 @@ let todos = [
 ];
 
 app.get('/api/todos', (req, res) => {
-  res.json(todos);
+  console.log(req.query);
+  if (!req.query.completed) {
+    return res.json(todos);
+  }
+  const completed = req.query.completed === 'true';
+  res.json(todos.filter((todo) => todo.completed === completed));
 });
 
 app.listen(3000);
