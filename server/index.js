@@ -32,6 +32,33 @@ app.post('/api/todos', (req, res, next) => {
   res.status(201).json(todo);
 });
 
+app.use('/api/todos/:id(\\d+)', (req, next) => {
+  const id = Number(req.params.id);
+  const todo = todos.find(todo => todo.id === id);
+  if (!todo) {
+    const error = new Error('todo not found')
+    error.statusCode = 404;
+    return next(error);
+  }
+  req.todo = todo;
+  next();
+})
+
+app.route('/api/todos/:id(\\d+)/completed')
+  .put((req, res) => {
+    req.todo.completed = true;
+    res.json(req.todo);
+  })
+  .delete((req, res) => {
+    req.todo.completed = false;
+    res.json(req.todo);
+  });
+
+app.delete('/api/todos/:id(\\d+)', (req, res) => {
+  todos = todos.filter(todo => todo.id !== req.todo.id);
+  res.status(204).end();
+})
+
 app.use((err, req, res, next) => {
   console.log(err);
   res.status(err.statusCode || 500).json({ error: err.message });
