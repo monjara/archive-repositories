@@ -11,7 +11,8 @@ const pages = {
 }
 
 const Todo = (props) => {
-  const { title, page, fetchQuery } = props;
+  const { page } = props;
+  const { title, fetchQuery } = pages[page];
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
@@ -38,11 +39,11 @@ const Todo = (props) => {
     </Head>
     <h1>{title}</h1>
     <ul>
-      {todos.map((id, completed) => <li key={id}>
+      {todos.map(todo => <li key={todo.id}>
           <span
-            style={completed ? { textDecoration: 'line-through' } : {}}
+            style={todo.completed ? { textDecoration: 'line-through' } : {}}
           >
-            {title}
+            {todo.title}
           </span>
       </li>)}
     </ul>
