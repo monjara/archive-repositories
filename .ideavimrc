@@ -18,10 +18,11 @@ set clipboard-=ideaput
 set clipboard+=unnamed
 set ideajoin
 set easymotion
+set multiple-cursors
 
 syntax enable
 
-let mapleader =" "
+let mapleader = " "
 
 " normal mode
 nnoremap j gj
