@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import useWindowSize from '../hooks/useWindowSize';
 
 type Props = {
   name: string;
@@ -6,11 +7,24 @@ type Props = {
 };
 
 const Member = ({ name, src }: Props) => {
+  const windowSize = useWindowSize();
+
   return (
-    <>
-      <Image src={src} width={180} height={180} alt="member" />
+    <div
+      style={{
+        width: windowSize.width * 0.9,
+        padding: windowSize.height * 0.05,
+        margin: 'auto',
+      }}
+    >
+      <Image
+        src={src}
+        width={windowSize.width * 0.25}
+        height={windowSize.width * 0.25}
+        alt="member"
+      />
       <p>{name}</p>
-    </>
+    </div>
   );
 };
 

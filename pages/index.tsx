@@ -2,14 +2,19 @@ import { useState, WheelEvent } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Member from '../componets/member';
+import useWindowSize from '../hooks/useWindowSize';
 
-const memberProps: { src: string } = {
+const memberProps: {
+  name: string;
+  src: string;
+} = {
   name: 'monjara',
   src: '/images/test/profile.jpg',
 };
 
 const Home: NextPage = () => {
   const [pageNum, setPageNum] = useState(0);
+  const windowSize = useWindowSize();
 
   const handlePage = (e: WheelEvent<HTMLDivElement>) => {
     e.deltaY > 0 ? setPageNum(pageNum + 1) : setPageNum(pageNum - 1);
@@ -22,7 +27,13 @@ const Home: NextPage = () => {
         <meta name="description" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div onWheel={(e) => handlePage(e)}>
+      <div
+        onWheel={(e) => handlePage(e)}
+        style={{
+          width: windowSize.width,
+          height: windowSize.height,
+        }}
+      >
         <Member src={memberProps.src} name={memberProps.name} />
       </div>
     </div>
