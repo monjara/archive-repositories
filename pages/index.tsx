@@ -4,7 +4,8 @@ import Head from 'next/head';
 import Member from '../componets/member';
 
 const memberProps: { src: string } = {
-  src: '/vercel.svg',
+  name: 'monjara',
+  src: '/images/test/profile.jpg',
 };
 
 const Home: NextPage = () => {
@@ -22,7 +23,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div onWheel={(e) => handlePage(e)}>
-        <Member num={pageNum} />
+        <Member src={memberProps.src} name={memberProps.name} />
       </div>
     </div>
   );
