@@ -7,9 +7,13 @@ import useWindowSize from '../hooks/useWindowSize';
 const memberProps: {
   name: string;
   src: string;
+  skills: string[];
+  description: string;
 } = {
   name: 'monjara',
   src: '/images/test/profile.jpg',
+  skills: ['Java', 'PHP', 'JavaScript'],
+  description: 'test',
 };
 
 const Home: NextPage = () => {
@@ -34,7 +38,12 @@ const Home: NextPage = () => {
           height: windowSize.height,
         }}
       >
-        <Member src={memberProps.src} name={memberProps.name} />
+        <Member
+          src={memberProps.src}
+          name={memberProps.name}
+          skills={memberProps.skills}
+          description={memberProps.description}
+        />
       </div>
     </div>
   );

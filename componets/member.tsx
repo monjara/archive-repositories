@@ -4,9 +4,11 @@ import useWindowSize from '../hooks/useWindowSize';
 type Props = {
   name: string;
   src: string;
+  skills: string[];
+  description: string;
 };
 
-const Member = ({ name, src }: Props) => {
+const Member = ({ name, src, skills, description }: Props) => {
   const windowSize = useWindowSize();
 
   return (
@@ -24,6 +26,12 @@ const Member = ({ name, src }: Props) => {
         alt="member"
       />
       <p>{name}</p>
+      <ul>
+        {skills.map((skill, index) => (
+          <li key={index}>{skill}</li>
+        ))}
+      </ul>
+      <p>{description}</p>
     </div>
   );
 };
