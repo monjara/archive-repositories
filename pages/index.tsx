@@ -3,6 +3,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Member from '../componets/member';
 import useWindowSize from '../hooks/useWindowSize';
+import Logo from '../componets/logo';
 
 const memberProps: {
   name: string;
@@ -25,12 +26,13 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div>
+    <>
       <Head>
         <title>catalog</title>
         <meta name="description" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Logo />
       <div
         onWheel={(e) => handlePage(e)}
         style={{
@@ -45,7 +47,7 @@ const Home: NextPage = () => {
           description={memberProps.description}
         />
       </div>
-    </div>
+    </>
   );
 };
 
