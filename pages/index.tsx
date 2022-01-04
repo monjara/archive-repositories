@@ -1,20 +1,23 @@
 import { useState, WheelEvent } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Member from '../componets/member';
 import useWindowSize from '../hooks/useWindowSize';
+import Member from '../componets/member';
 import Logo from '../componets/logo';
 
 const memberProps: {
   name: string;
   src: string;
   skills: string[];
+  years: number;
   description: string;
 } = {
   name: 'monjara',
   src: '/images/test/profile.jpg',
   skills: ['Java', 'PHP', 'JavaScript'],
-  description: 'test',
+  years: 2,
+  description:
+    'testyiwsdfasdfasdfasdfsadfsdafsaddddd\ndddddddddddddddddddddddddddddddddddddddddddddd',
 };
 
 const Home: NextPage = () => {
@@ -44,6 +47,7 @@ const Home: NextPage = () => {
           src={memberProps.src}
           name={memberProps.name}
           skills={memberProps.skills}
+          years={memberProps.years}
           description={memberProps.description}
         />
       </div>
