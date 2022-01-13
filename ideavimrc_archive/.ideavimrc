@@ -1,0 +1,40 @@
+" basic setting
+set fenc=utf-8
+set nobackup
+set noswapfile
+set autoread
+set hidden
+set showcmd
+set number
+set cursorline
+set virtualedit=onemore
+set smartindent
+set visualbell
+set showmatch
+set laststatus=2
+set wildmode=list:longest
+set ignorecase
+set clipboard-=ideaput
+set clipboard+=unnamed
+set ideajoin
+set easymotion
+set multiple-cursors
+
+syntax enable
+
+let mapleader = " "
+
+" normal mode
+nnoremap j gj
+nnoremap k gk
+nnoremap <leader>j :action GotoDeclaration<cr>
+nnoremap <leader>h :action Back<cr>
+
+" insert mode
+inoremap <silent> jj <ESC>
+inoremap { {}<LEFT>
+inoremap [ []<LEFT>
+inoremap ( ()<LEFT>
+inoremap ' ''<LEFT>
+inoremap " ""<LEFT>
+
