@@ -1,4 +1,5 @@
 name: Remix on Github Pages
+
 on:
   push:
     branches:
@@ -6,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+
 jobs:
   build-deploy:
     runs-on: ubuntu-20.04
