@@ -38,4 +38,3 @@ jobs:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
           external_repository: monjara/monjara.github.io
-
