@@ -1,0 +1,37 @@
+name: Remix on Github Pages
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build-deploy:
+    runs-os: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: install dependencies
+        run: npm install
+
+      - name: Start server and mirror it with wget
+        run: |
+              npm run dev &
+              sleep 10 &&
+              wget --mirror http://localhost:3000 -P out --no-host-directories --page-requisites --adjust-extension
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_dir: ./out
+          external_repository: monjara/monjara.github.io
